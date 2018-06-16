@@ -3,6 +3,8 @@ TO DO list for PercentFormat
 
 TO DO list for PercentFormat, more or less in order:
 
+* add missing copyright notices in Haskell files
+
 * sweep `TODO`s scattered through files;
 
 * test on travis;
