@@ -79,7 +79,7 @@ import Data.Maybe (listToMaybe, fromMaybe)
 import Data.Char (isDigit)
 import Text.PercentFormat.Spec  as S
 import Text.PercentFormat.Utils hiding (align)
-import Text.PercentFormat.Quotient (maybeReadQ, digits, Quotient)
+import Text.PercentFormat.Quotient (maybeReadQ, digits, Quotient, infinity, nan)
 import qualified Text.PercentFormat.Quotient as Q
 import qualified Text.PercentFormat.Utils as U
 import Prelude hiding (showString, showChar)
@@ -133,6 +133,8 @@ showDigits spec x =
                then align spec
                else align spec{width = width spec - length (signal q)}
   round' :: Int -> Maybe Int -> Quotient -> Quotient
+  round' _ _ q | q == infinity || q == (-infinity) = q -- TODO: isInfinite?
+  round' _ _ q | q == nan      = q -- TODO: q /= q  or isNaN?
   round' _ Nothing  q = q
   round' b (Just p) q = round (q * fromIntegral b ^ p) Q.% fromIntegral b ^ p
   showds :: Integer -> [Int] -> [Int] -> Maybe Int -> String

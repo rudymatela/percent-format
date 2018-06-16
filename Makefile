@@ -82,9 +82,9 @@ update-examples-diff-test: bench/examples
 	./bench/examples "%s"    > tests/diff/examples-s.out
 	./bench/examples "%6s"   > tests/diff/examples-6s.out
 	./bench/examples "%-6s"  > tests/diff/examples--6s.out
-	./bench/examples "%i"    > tests/diff/examples-i.out   || true # TODO: fixme
-	./bench/examples "%3i"   > tests/diff/examples-3i.out  || true # TODO: fixme
-	./bench/examples "%-3i"  > tests/diff/examples--3i.out || true # TODO: fixme
+	./bench/examples "%i"    > tests/diff/examples-i.out
+	./bench/examples "%3i"   > tests/diff/examples-3i.out
+	./bench/examples "%-3i"  > tests/diff/examples--3i.out
 	./bench/examples "%f"    > tests/diff/examples-f.out
 	./bench/examples "%c"    > tests/diff/examples-c.out
 	./bench/examples "abc"   > tests/diff/examples-abc.out

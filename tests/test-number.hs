@@ -3,6 +3,7 @@
 import Test
 
 import Text.PercentFormat
+import Data.List (isInfixOf)
 
 import qualified Data.Ratio as R
 
@@ -47,23 +48,28 @@ tests =
 
   -- Infinity
   , "%f" % (1.0 / 0.0) == "Infinity"
---, "%i" % (1.0 / 0.0) == "Infinity"  -- TODO: make this pass
+  , "%i" % (1.0 / 0.0) == "Infinity"
   , "%d" % (1.0 / 0.0) == "Infinity"
   , "%x" % (1.0 / 0.0) == "Infinity"
   , "%o" % (1.0 / 0.0) == "Infinity"
--- TODO: make the following pass:
---, and $ [ "%%%i%c" -%% (n,c) -% (1.0 / 0.0) == "Infinity"
---        | n <- [-7..7], c <- "idxobf" ]
+  , and $ [ "%%%i%c" -%% (n,c) -% (1.0 / 0.0) == "Infinity"
+          | n <- [-7..7], c <- "idxobf" ]
+
+  -- -Infinity
+  , "%f" % (-1.0 / 0.0) == "-Infinity"
+  , "%i" % (-1.0 / 0.0) == "-Infinity"
+  , "%d" % (-1.0 / 0.0) == "-Infinity"
+  , "%x" % (-1.0 / 0.0) == "-Infinity"
+  , "%o" % (-1.0 / 0.0) == "-Infinity"
 
   -- NaN
   , "%f" % (0.0 / 0.0) == "NaN"
---, "%i" % (0.0 / 0.0) == "NaN"  -- TODO: make this pass
+  , "%i" % (0.0 / 0.0) == "NaN"
   , "%d" % (0.0 / 0.0) == "NaN"
   , "%x" % (0.0 / 0.0) == "NaN"
   , "%o" % (0.0 / 0.0) == "NaN"
--- TODO: make the following pass:
---, and $ [ "%%%i%c" -%% (n,c) -% (0.0 / 0.0) == "NaN"
---        | n <- [-7..7], c <- "idxobf" ]
+  , and $ [ "NaN" `isInfixOf` ("%%%i%c" -%% (n,c) -% (0.0 / 0.0))
+          | n <- [-7..7], c <- "idxobf" ]
 
   -- decimal fractional digits
   , "%f" % 1 == "1.0"
