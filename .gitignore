@@ -1,0 +1,36 @@
+# .gitignore for PercentFormat
+
+# General
+**.swp
+**~
+
+# Haskell
+**.hi
+**.o
+**.dyn_hi
+**.dyn_o
+**.hpc
+**.hpc-*
+**.tix
+
+# Haskell Cabal
+**/.cabal-sandbox
+**/cabal.sandbox.config
+**/dist/
+
+# hasktags
+**/idx/
+**/TAGS
+**/tags
+
+# specific files and folders
+doc
+mk/toplibs
+bench/percent-s
+bench/speculate
+tests/test-main
+tests/test-number
+tests/test-prop
+tests/test-quotient
+tests/test-spec
+tests/test-unit
