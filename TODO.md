@@ -16,6 +16,8 @@ TO DO list for PercentFormat, more or less in order:
 
 * release percent-format package on Hackage;
 
+* add link to Haddock documentation on README;
+
 * add `%q` (see `tests/test-number.hs`);
 
 * *maybe*: make "%l" for lists:
