@@ -1,6 +1,6 @@
 # Implicit rules for compiling Haskell code.
 #
-# Copyright (c) 2015-2017 Rudy Matela.
+# Copyright (c) 2015-2018 Rudy Matela.
 # Distributed under the 3-Clause BSD licence.
 #
 # You can optionally configure the "Configuration variables" below in your main
@@ -19,6 +19,17 @@
 GHCIMPORTDIRS ?=
 GHCFLAGS ?=
 GHC ?= ghc
+GHCCMD = $(GHC) -i$(GHCIMPORTDIRS) $(GHCFLAGS)
+
+# Hugs Parameters
+HUGSIMPORTDIRS ?= "/usr/lib/hugs/packages/*"
+HUGSFLAGS ?=
+CPPHS_HUGS ?= cpphs-hugs --noline -D__HUGS__
+HUGS ?= hugs
+RUNHUGS ?= runhugs
+HUGSCMD    = $(HUGS)    -F"$(CPPHS_HUGS)" -P$(HUGSIMPORTDIRS) $(HUGSFLAGS)
+RUNHUGSCMD = $(RUNHUGS) -F"$(CPPHS_HUGS)" -P$(HUGSIMPORTDIRS) $(HUGSFLAGS)
+
 
 # Makefile where to keep the dependencies
 DEPMK ?= mk/depend.mk
@@ -35,8 +46,6 @@ HSS ?= $(shell find \( -path "./dist" -o -path "./Setup.hs" -o -path "./.stack-w
 
 
 # Implicit rules
-GHCCMD = $(GHC) -i$(GHCIMPORTDIRS) $(GHCFLAGS)
-
 %.hi %.o: %.hs
 	$(GHCCMD) $< && touch $@
 
@@ -46,6 +55,14 @@ GHCCMD = $(GHC) -i$(GHCIMPORTDIRS) $(GHCFLAGS)
 .PHONY: %.ghci
 %.ghci: %.hs
 	$(GHCCMD) -O0 --interactive $<
+
+.PHONY: %.hugs
+%.hugs: %.hs
+	$(HUGSCMD) $<
+
+.PHONY: %.runhugs
+%.runhugs: %.hs
+	$(RUNHUGSCMD) $<
 
 
 # Cleaning rule (add as a clean dependency)
