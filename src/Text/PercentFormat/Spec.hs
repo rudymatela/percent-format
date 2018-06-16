@@ -1,3 +1,14 @@
+-- |
+-- Module      : Text.PercentFormat
+-- Copyright   : (c) 2016-2018 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This file is part of PercentFormat a library for printf-style string
+-- formatting.
+--
+-- This module provides the Spec type which represents a @%...% specification
+-- format.
 module Text.PercentFormat.Spec where
 
 import Data.Char (isDigit)
@@ -33,6 +44,7 @@ spec = Spec
   , positivePrefix = ""
   }
 
+-- TODO: either: move headOr to Utils module or remove headOr
 headOr :: a -> [a] -> a
 headOr y []    = y
 headOr _ (x:_) = x

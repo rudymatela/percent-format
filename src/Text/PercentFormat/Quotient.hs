@@ -4,7 +4,8 @@
 -- License     : 3-Clause BSD  (see the file LICENSE)
 -- Maintainer  : Rudy Matela <rudy@matela.com.br>
 --
--- The 'Quotient' datatype.
+-- The 'Quotient' datatype.  Similar to 'Rational' but allows @Infinity@ and
+-- @NaN@.
 module Text.PercentFormat.Quotient
   ( Quotient
   , (%)
@@ -16,6 +17,7 @@ module Text.PercentFormat.Quotient
   , fracDigits
   )
 where
+-- TODO: document this module more thoroughly
 
 import Data.Char (isDigit)
 import Data.Maybe (fromMaybe)

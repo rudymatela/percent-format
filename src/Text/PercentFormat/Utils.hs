@@ -1,3 +1,13 @@
+-- |
+-- Module      : Text.PercentFormat
+-- Copyright   : (c) 2016-2018 Rudy Matela
+-- License     : 3-Clause BSD  (see the file LICENSE)
+-- Maintainer  : Rudy Matela <rudy@matela.com.br>
+--
+-- This file is part of PercentFormat a library for printf-style string
+-- formatting.
+--
+-- This module provides miscellaneous utility functions.
 module Text.PercentFormat.Utils
   ( maybeRead
   , align
@@ -10,6 +20,8 @@ module Text.PercentFormat.Utils
   , loop
   )
 where
+
+-- TODO: document this module more thoroughly
 
 import Data.Maybe (listToMaybe)
 import Data.List (unfoldr)
