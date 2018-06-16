@@ -11,7 +11,7 @@ TESTS = \
   tests/test-prop
 EGS =
 BENCHS = bench/speculate
-LISTHS   = find src mk -name \*.hs
+LISTHS   = find src mk tests bench -name \*.hs
 LISTOBJS = $(LISTHS) | sed -e 's/.hs$$/.o/'
 ALLHS    = $(shell $(LISTHS))
 ALLOBJS  = $(shell $(LISTOBJS))
