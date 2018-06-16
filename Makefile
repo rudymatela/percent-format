@@ -23,7 +23,7 @@ HUGSIMPORTDIRS = .:./src:./tests:/usr/lib/hugs/packages/*
 
 all: mk/toplibs $(TESTS)
 
-test: $(patsubst %,%.test,$(TESTS))
+test: $(patsubst %,%.test,$(TESTS)) diff-test
 
 test-via-cabal:
 	cabal clean  &&  cabal configure --enable-tests  && cabal test
@@ -54,6 +54,40 @@ clean: clean-hi-o
 ghci: mk/All.ghci
 
 hugs: mk/All.hugs
+
+diff-test: examples-diff-test
+
+update-diff-test: update-examples-diff-test
+
+examples-diff-test: bench/examples
+	./bench/examples         | diff -rud tests/diff/examples.out     -
+	./bench/examples "%r"    | diff -rud tests/diff/examples-r.out   -
+	./bench/examples "%6r"   | diff -rud tests/diff/examples-6r.out  -
+	./bench/examples "%-6r"  | diff -rud tests/diff/examples--6r.out -
+	./bench/examples "%s"    | diff -rud tests/diff/examples-s.out   -
+	./bench/examples "%6s"   | diff -rud tests/diff/examples-6s.out  -
+	./bench/examples "%-6s"  | diff -rud tests/diff/examples--6s.out -
+	./bench/examples "%i"    | diff -rud tests/diff/examples-i.out   -
+	./bench/examples "%3i"   | diff -rud tests/diff/examples-3i.out  -
+	./bench/examples "%-3i"  | diff -rud tests/diff/examples--3i.out -
+	./bench/examples "%f"    | diff -rud tests/diff/examples-f.out   -
+	./bench/examples "%c"    | diff -rud tests/diff/examples-c.out   -
+	./bench/examples "abc"   | diff -rud tests/diff/examples-abc.out -
+
+update-examples-diff-test: bench/examples
+	./bench/examples         > tests/diff/examples.out
+	./bench/examples "%r"    > tests/diff/examples-r.out
+	./bench/examples "%6r"   > tests/diff/examples-6r.out
+	./bench/examples "%-6r"  > tests/diff/examples--6r.out
+	./bench/examples "%s"    > tests/diff/examples-s.out
+	./bench/examples "%6s"   > tests/diff/examples-6s.out
+	./bench/examples "%-6s"  > tests/diff/examples--6s.out
+	./bench/examples "%i"    > tests/diff/examples-i.out   || true # TODO: fixme
+	./bench/examples "%3i"   > tests/diff/examples-3i.out  || true # TODO: fixme
+	./bench/examples "%-3i"  > tests/diff/examples--3i.out || true # TODO: fixme
+	./bench/examples "%f"    > tests/diff/examples-f.out
+	./bench/examples "%c"    > tests/diff/examples-c.out
+	./bench/examples "abc"   > tests/diff/examples-abc.out
 
 haddock: doc/index.html
 
