@@ -69,9 +69,18 @@ examples-diff-test: bench/examples
 	./bench/examples "%-6s"      | diff -rud tests/diff/examples--6s.out     -
 	./bench/examples "%i"        | diff -rud tests/diff/examples-i.out       -
 	./bench/examples "%3i"       | diff -rud tests/diff/examples-3i.out      -
+	./bench/examples "%03i"      | diff -rud tests/diff/examples-03i.out     -
 	./bench/examples "%-3i"      | diff -rud tests/diff/examples--3i.out     -
+	./bench/examples "%+3i"      | diff -rud tests/diff/examples-+3i.out     -
+	./bench/examples "% 3i"      | diff -rud tests/diff/examples-_3i.out     -
 	./bench/examples "%f"        | diff -rud tests/diff/examples-f.out       -
+	./bench/examples "%5f"       | diff -rud tests/diff/examples-5f.out      -
+	./bench/examples "%+5f"      | diff -rud tests/diff/examples-+5f.out     -
+	./bench/examples "%-5f"      | diff -rud tests/diff/examples--5f.out     -
+	./bench/examples "%11.2f"    | diff -rud tests/diff/examples-11p2f.out   -
+	./bench/examples "%-11.2f"   | diff -rud tests/diff/examples--11p2f.out  -
 	./bench/examples "%c"        | diff -rud tests/diff/examples-c.out       -
+	./bench/examples "%2c"       | diff -rud tests/diff/examples-2c.out      -
 	./bench/examples "abc"       | diff -rud tests/diff/examples-abc.out     -
 
 update-examples-diff-test: bench/examples
@@ -84,9 +93,18 @@ update-examples-diff-test: bench/examples
 	./bench/examples "%-6s"      > tests/diff/examples--6s.out
 	./bench/examples "%i"        > tests/diff/examples-i.out
 	./bench/examples "%3i"       > tests/diff/examples-3i.out
+	./bench/examples "%03i"      > tests/diff/examples-03i.out
 	./bench/examples "%-3i"      > tests/diff/examples--3i.out
+	./bench/examples "%+3i"      > tests/diff/examples-+3i.out
+	./bench/examples "% 3i"      > tests/diff/examples-_3i.out
 	./bench/examples "%f"        > tests/diff/examples-f.out
+	./bench/examples "%5f"       > tests/diff/examples-5f.out
+	./bench/examples "%+5f"      > tests/diff/examples-+5f.out
+	./bench/examples "%-5f"      > tests/diff/examples--5f.out
+	./bench/examples "%11.2f"    > tests/diff/examples-11p2f.out
+	./bench/examples "%-11.2f"   > tests/diff/examples--11p2f.out
 	./bench/examples "%c"        > tests/diff/examples-c.out
+	./bench/examples "%2c"       > tests/diff/examples-2c.out
 	./bench/examples "abc"       > tests/diff/examples-abc.out
 
 haddock: doc/index.html
