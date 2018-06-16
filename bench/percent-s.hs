@@ -15,7 +15,7 @@ main :: IO ()
 main = interact maini
 
 (%&) :: Show a => String -> a -> String
-s %& x = "%r %% %12-s == %r" % s % show11 x -% ("%s" % x)
+s %& x = "%r -%% %12-s == %r" % s % show11 x -% (s -% x)
 
 show11 :: Show a => a -> String
 show11 x = showsPrec 11 x ""
