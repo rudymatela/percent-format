@@ -14,6 +14,8 @@ TO DO list for PercentFormat, more or less in order:
 
 * add `%e`;
 
+* when `%s` argument is char, generate `<char>` instead of `'<char>'`;
+
 * release percent-format package on Hackage;
 
 * add link to Haddock documentation on README;
