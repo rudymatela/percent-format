@@ -20,6 +20,18 @@ cabal-version:       >=1.18
 extra-doc-files: README.md
                , TODO.md
 extra-source-files: .gitignore
+                  , Makefile
+                  , mk/depend.mk
+                  , mk/ghcdeps
+                  , mk/haddock-i
+                  , mk/All.hs
+                  , mk/haskell.mk
+                  , mk/Toplibs.hs
+                  , stack.yaml
+                  , tests/test-sdist
+                  , .travis.yml
+                  , bench/percent-s.hs
+                  , bench/speculate.hs
 tested-with: GHC==8.4
 -- TODO: test with older GHCs
 
