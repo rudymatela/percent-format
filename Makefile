@@ -19,6 +19,7 @@ OBJS = src/Text/PercentFormat.o
 GHCIMPORTDIRS = src:tests
 GHCFLAGS = -O2 -dynamic
 HADDOCKFLAGS = --no-print-missing-docs
+HUGSIMPORTDIRS = .:./src:./tests:/usr/lib/hugs/packages/*
 
 all: mk/toplibs $(TESTS)
 
@@ -51,6 +52,8 @@ clean: clean-hi-o
 	rm -rf doc/
 
 ghci: mk/All.ghci
+
+hugs: mk/All.hugs
 
 haddock: doc/index.html
 
