@@ -1,12 +1,12 @@
-bench/percent-s: \
-  bench/percent-s.hs \
+bench/examples: \
+  bench/examples.hs \
   mk/toplibs
-bench/percent-s.o: \
+bench/examples.o: \
   src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Spec.hs \
   src/Text/PercentFormat/Quotient.hs \
   src/Text/PercentFormat.hs \
-  bench/percent-s.hs
+  bench/examples.hs
 bench/speculate: \
   bench/speculate.hs \
   mk/toplibs

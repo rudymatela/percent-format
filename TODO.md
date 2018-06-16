@@ -3,7 +3,7 @@ TO DO list for PercentFormat
 
 TO DO list for PercentFormat, more or less in order:
 
-* improve percent-s, add diff-tests
+* add diff-tests to bench/examples
 
 * sweep `TODO`s scattered through files;
 

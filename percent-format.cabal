@@ -30,7 +30,7 @@ extra-source-files: .gitignore
                   , stack.yaml
                   , tests/test-sdist
                   , .travis.yml
-                  , bench/percent-s.hs
+                  , bench/examples.hs
                   , bench/speculate.hs
 tested-with: GHC==8.4
 -- TODO: test with older GHCs
