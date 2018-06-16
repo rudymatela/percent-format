@@ -17,7 +17,7 @@ ALLHS    = $(shell $(LISTHS))
 ALLOBJS  = $(shell $(LISTOBJS))
 OBJS = src/Text/PercentFormat.o
 GHCIMPORTDIRS = src:tests
-GHCFLAGS = -O2 -dynamic
+GHCFLAGS = -O2 $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
 HADDOCKFLAGS = --no-print-missing-docs
 HUGSIMPORTDIRS = .:./src:./tests:/usr/lib/hugs/packages/*
 
