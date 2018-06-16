@@ -5,8 +5,6 @@ TO DO list for PercentFormat, more or less in order:
 
 * sweep `TODO`s scattered through files;
 
-* improve diff-tests of bench/examples
-
 * on the `Makefile`:
 	- add `legacy-test` target;
 	- add `legacy-test-via-cabal` target;
