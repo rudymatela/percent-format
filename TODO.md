@@ -3,9 +3,9 @@ TO DO list for PercentFormat
 
 TO DO list for PercentFormat, more or less in order:
 
-* add diff-tests to bench/examples
-
 * sweep `TODO`s scattered through files;
+
+* improve diff-tests of bench/examples
 
 * on the `Makefile`:
 	- add `legacy-test` target;
