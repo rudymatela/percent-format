@@ -11,6 +11,7 @@ put s  =  putStrLn . unlines
        ++ (s %&) `map` take 12 (list :: [Float])
        ++ (s %&) `map` take 12 (list :: [Rational])
        ++ (s %&) `map` take 12 (list :: [Char])
+       ++ (s %&) `map` take 12 (list :: [Bool])
 
 main :: IO ()
 main = do
