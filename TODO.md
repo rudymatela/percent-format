@@ -3,6 +3,8 @@ TO DO list for PercentFormat
 
 TO DO list for PercentFormat, more or less in order:
 
+* improve percent-s, add diff-tests
+
 * sweep `TODO`s scattered through files;
 
 * on the `Makefile`:
