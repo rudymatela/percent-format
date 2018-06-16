@@ -22,6 +22,7 @@ where
 import Data.Char (isDigit)
 import Data.Maybe (fromMaybe)
 import Data.List (findIndex)
+import Data.Functor ((<$>))
 import qualified Data.Ratio as R
 
 -- our own Ratio type that allows Infinity and NaN
