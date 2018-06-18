@@ -11,11 +11,6 @@ TESTS = \
   tests/test-prop
 EGS =
 BENCHS = bench/speculate
-LISTHS   = find src -name \*.hs
-LISTOBJS = $(LISTHS) | sed -e 's/.hs$$/.o/'
-ALLHS    = $(shell $(LISTHS))
-ALLOBJS  = $(shell $(LISTOBJS))
-OBJS = src/Text/PercentFormat.o
 GHCIMPORTDIRS = src:tests
 GHCFLAGS = -O2 $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
 HADDOCKFLAGS = --no-print-missing-docs
@@ -107,32 +102,11 @@ update-examples-diff-test: bench/examples
 	./bench/examples "%2c"       > tests/diff/examples-2c.out
 	./bench/examples "abc"       > tests/diff/examples-abc.out
 
-haddock: doc/index.html
-
-clean-haddock:
-	rm -f doc/*.{html,css,js,png,gif} README.html
-
-upload-haddock:
-	@echo "use \`cabal upload -d' instead"
-	@echo "(but 1st: cabal install --only-dependencies --enable-documentation)"
-	@echo "(to just compile docs: cabal haddock --for-hackage)"
-	@echo "(on Arch Linux, use: cabal haddock --for-hackage --haddock-options=--optghc=-dynamic)"
-
-doc/index.html: $(ALLHS)
-	./mk/haddock-i base template-haskell | xargs \
-	haddock --html -odoc $(ALLHS) $(HADDOCKFLAGS) --title=percent-format
-
 # NOTE: (very hacky!) the following target allows parallel compilation (-jN) of
 # eg and tests programs so long as they don't share dependencies _not_ stored
 # in src/ and tests/.  Runnable binaries should depend on mk/toplibs instead of
 # actual Haskell source files
 mk/toplibs: mk/Toplibs.o
 	touch mk/toplibs
-
-list-hs:
-	$(LISTHS)
-
-list-objs:
-	$(LISTOBJS)
 
 include mk/haskell.mk
