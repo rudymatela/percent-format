@@ -44,11 +44,6 @@ spec = Spec
   , positivePrefix = ""
   }
 
--- TODO: either: move headOr to Utils module or remove headOr
-headOr :: a -> [a] -> a
-headOr y []    = y
-headOr _ (x:_) = x
-
 parseSpec :: String -> (Spec,String)
 parseSpec ('%':cs) = (spec {ty = Percent   }, cs)
 parseSpec ('r':cs) = (spec {ty = ReprSpec  }, cs)
