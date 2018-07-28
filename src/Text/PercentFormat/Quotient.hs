@@ -11,6 +11,8 @@ module Text.PercentFormat.Quotient
   , (%)
   , infinity
   , nan
+  , isInfinite
+  , isNaN
   , readQ
   , maybeReadQ
   , digits
@@ -19,6 +21,7 @@ module Text.PercentFormat.Quotient
 where
 -- TODO: document this module more thoroughly
 
+import Prelude hiding (isInfinite, isNaN)
 import Data.Char (isDigit)
 import Data.Maybe (fromMaybe)
 import Data.List (findIndex)
@@ -53,6 +56,13 @@ infinity = 1 % 0
 
 nan :: Quotient
 nan = 0 % 0
+
+isInfinite :: Quotient -> Bool
+isInfinite q = q == infinity || q == (-infinity)
+
+isNaN :: Quotient -> Bool
+isNaN q = q == nan  -- TODO: q /= q
+
 
 instance Num Quotient where
   negate (x :% y)  =  negate x % y

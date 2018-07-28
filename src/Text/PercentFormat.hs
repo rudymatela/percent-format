@@ -133,8 +133,8 @@ showDigits spec x =
                then align spec
                else align spec{width = width spec - length (signal q)}
   round' :: Int -> Maybe Int -> Quotient -> Quotient
-  round' _ _ q | q == infinity || q == (-infinity) = q -- TODO: isInfinite?
-  round' _ _ q | q == nan      = q -- TODO: q /= q  or isNaN?
+  round' _ _ q | Q.isInfinite q = q
+  round' _ _ q | Q.isNaN q      = q
   round' _ Nothing  q = q
   round' b (Just p) q = round (q * fromIntegral b ^ p) Q.% fromIntegral b ^ p
   showds :: Integer -> [Int] -> [Int] -> Maybe Int -> String
