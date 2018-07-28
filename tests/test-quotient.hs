@@ -26,6 +26,9 @@ tests n =
   , holds n $ \x -> negate (negate x) == (x -: quotient)
   , holds n $ \x -> abs x * signum x == (x -: quotient)
 
+  , holds n $ okEqOrd -:> quotient
+--, holds n $ okNum -:> quotient  -- TODO: when new LeanCheck is released
+
   , readQ "Infinity" == infinity
   , readQ "-Infinity" == -infinity
   , readQ "NaN" == nan
