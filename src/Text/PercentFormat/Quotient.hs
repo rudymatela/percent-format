@@ -30,8 +30,10 @@ import qualified Data.Ratio as R
 
 -- our own Ratio type that allows Infinity and NaN
 data Quotient = Integer :% Integer
-  deriving Eq
 infixl 7 :%
+
+instance Eq Quotient where
+  (x :% y) == (x' :% y')  =  (x * y') == (x' * y)
 
 instance Ord Quotient where
   (x :% y) `compare` (x' :% y') = (x * y') `compare` (x' * y)
