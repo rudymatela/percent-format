@@ -5,7 +5,8 @@ import Test
 import Test.LeanCheck
 import Test.LeanCheck.Utils
 
-import Text.PercentFormat.Quotient
+import Text.PercentFormat.Quotient as Q
+import Text.PercentFormat.Utils
 
 main :: IO ()
 main = reportTests (tests 360)
@@ -26,12 +27,12 @@ tests n =
   , holds n $ \x -> negate (negate x) == (x -: quotient)
   , holds n $ \x -> abs x * signum x == (x -: quotient)
 
-  , holds n $ okEqOrd -:> quotient
+  , holds n $ \q r s -> none Q.isNaN [q,r,s] ==> okEqOrd q r s
 --, holds n $ okNum -:> quotient  -- TODO: when new LeanCheck is released
 
   , readQ "Infinity" == infinity
   , readQ "-Infinity" == -infinity
-  , readQ "NaN" == nan
+  , let nan' = readQ "NaN" in nan' /= nan'
   , maybeReadQ "blah" == Nothing
   , readQ "10" == 10
   , readQ "-300" == (-300)

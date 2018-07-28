@@ -33,6 +33,8 @@ data Quotient = Integer :% Integer
 infixl 7 :%
 
 instance Eq Quotient where
+  (0 :% 0) == _  =  False
+  _ == (0 :% 0)  =  False
   (x :% y) == (x' :% y')  =  (x * y') == (x' * y)
 
 instance Ord Quotient where
@@ -63,7 +65,7 @@ isInfinite :: Quotient -> Bool
 isInfinite q = q == infinity || q == (-infinity)
 
 isNaN :: Quotient -> Bool
-isNaN q = q == nan  -- TODO: q /= q
+isNaN q = q /= q
 
 
 instance Num Quotient where

@@ -18,6 +18,7 @@ module Text.PercentFormat.Utils
   , intsToDigits
   , theLast
   , loop
+  , none
   )
 where
 
@@ -92,3 +93,6 @@ theLast n xs = drop (length xs - n) xs
 loop :: [a] -> [a]
 loop [] = []
 loop xs = cycle xs
+
+none :: (a -> Bool) -> [a] -> Bool
+none p = not . or . map p
