@@ -76,6 +76,9 @@ examples-diff-test: bench/examples
 	./bench/examples "%-11.2f"   | diff -rud tests/diff/examples--11p2f.out  -
 	./bench/examples "%c"        | diff -rud tests/diff/examples-c.out       -
 	./bench/examples "%2c"       | diff -rud tests/diff/examples-2c.out      -
+	./bench/examples "%b"        | diff -rud tests/diff/examples-b.out       -
+	./bench/examples "%o"        | diff -rud tests/diff/examples-o.out       -
+	./bench/examples "%x"        | diff -rud tests/diff/examples-x.out       -
 	./bench/examples "abc"       | diff -rud tests/diff/examples-abc.out     -
 
 update-examples-diff-test: bench/examples
@@ -100,6 +103,9 @@ update-examples-diff-test: bench/examples
 	./bench/examples "%-11.2f"   > tests/diff/examples--11p2f.out
 	./bench/examples "%c"        > tests/diff/examples-c.out
 	./bench/examples "%2c"       > tests/diff/examples-2c.out
+	./bench/examples "%b"        > tests/diff/examples-b.out
+	./bench/examples "%o"        > tests/diff/examples-o.out
+	./bench/examples "%x"        > tests/diff/examples-x.out
 	./bench/examples "abc"       > tests/diff/examples-abc.out
 
 # NOTE: (very hacky!) the following target allows parallel compilation (-jN) of
