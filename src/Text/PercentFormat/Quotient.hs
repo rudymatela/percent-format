@@ -135,27 +135,25 @@ readQ = fromMaybe (error "No number to read") . maybeReadQ
 --   The signal is ignored.
 --
 -- > > digits 10 (1234567 / 100)
--- > (12345,[6,7],[])
+-- > Right (12345,[6,7],[])
 -- > > digits 10 (1/3)
--- > (0,[3],1)
+-- > Right (0,[3],1)
 -- > > digits 10 (1/6)
--- > (0,[1,6],1)
+-- > Right (0,[1,6],1)
 -- > > digits 10 (1/7)
--- > (0,[1,4,2,8,5,7],6)
+-- > Right (0,[1,4,2,8,5,7],6)
 -- > > digits 10 (1/11)
--- > (0,[0,9],2)
+-- > Right (0,[0,9],2)
 -- > digits 10 (1/12)
--- > (0,[0,8,3],1)
+-- > Right (0,[0,8,3],1)
 -- > > digits 10 (1/13)
--- > (0,[0,7,6,9,2,3],6)
+-- > Right (0,[0,7,6,9,2,3],6)
 -- > > digits 10 123
--- > (123,[],[])
+-- > Right (123,[],[])
 -- > > digits 10 (-4/3)
--- > (1,[],[3])
+-- > Right (1,[],[3])
 -- > > digits 10 (-1/3)
--- > (0,[],[3])
---
--- TODO: fix docs, refactor
+-- > Right (0,[],[3])
 digits :: Int -> Quotient -> Either String (Integer,[Int],[Int])
 digits b (0 :% 0) = Left "NaN"
 digits b (n :% 0) = Left "Infinity"
