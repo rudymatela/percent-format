@@ -76,6 +76,7 @@ showWithBase b 0 = "0"
 showWithBase b n | n < 0     = '-':showWithBase b (abs n)
                  | otherwise = map intToDigit $ integerToDigits b n
 
+-- | Given an integer, returns a list of digits.  Signal is ignored.
 integerToDigits :: Integral a => Int -> a -> [Int]
 integerToDigits b =
     map fromIntegral
