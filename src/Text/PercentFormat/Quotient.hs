@@ -157,7 +157,8 @@ readQ = fromMaybe (error "No number to read") . maybeReadQ
 --
 -- TODO: fix docs, refactor
 digits :: Int -> Quotient -> Either String (Integer,[Int],[Int])
-digits b (n :% 0) = Left $ if n == 0 then "NaN" else "Infinity"
+digits b (0 :% 0) = Left "NaN"
+digits b (n :% 0) = Left "Infinity"
 digits b q = Right (abs i,fds,pds)
   where
   (i,q') = properFraction q
