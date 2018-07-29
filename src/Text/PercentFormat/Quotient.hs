@@ -19,7 +19,6 @@ module Text.PercentFormat.Quotient
   , fracDigits
   )
 where
--- TODO: document this module more thoroughly
 
 import Prelude hiding (isInfinite, isNaN)
 import Data.Char (isDigit)
@@ -28,16 +27,24 @@ import Data.List (findIndex)
 import Data.Functor ((<$>))
 import qualified Data.Ratio as R
 
--- our own Ratio type that allows Infinity and NaN
+-- | Our own Ratio type that allows Infinity and NaN
 data Quotient = Integer :% Integer
 infixl 7 :%
 
+-- | 'Eq' instance for 'Quotient'.  Follows the identity property except for
+--   NaN which is different from itself (this is consistent with Float & Double
+--   behaviour).
 instance Eq Quotient where
   (0 :% 0) == _  =  False
   _ == (0 :% 0)  =  False
   (x :% y) == (x' :% y')  =  (x * y') == (x' * y)
 
+-- | 'Ord' instance for 'Quotient'.  Follows the regular order properties
+--   except for NaN.  When NaN is present in any of the operands of 'compare',
+--   'GT' is returned.
 instance Ord Quotient where
+  (0 :% 0) `compare` _  =  GT  -- consistent with Float & Double
+  _ `compare` (0 :% 0)  =  GT  -- consistent with Float & Double
   (x :% y) `compare` (x' :% y') = (x * y') `compare` (x' * y)
 
 instance Show Quotient where
@@ -47,6 +54,7 @@ instance Show Quotient where
   showsPrec d (x :% y) = showParen (d > 7)
                        $ showsPrec 7 x . showString " % " . showsPrec 7 y
 
+-- | Smart-constructor for Quotients
 (%) :: Integer -> Integer -> Quotient
 0 % 0  =  0 :% 0         -- NaN
 x % 0  =  signum x :% 0  -- (+/-) Infinity
@@ -55,15 +63,19 @@ x % y  =  (x * signum y `quot` d) :% (abs y `quot` d)
   d = gcd x y
 infixl 7 %
 
+-- | Infinity.
 infinity :: Quotient
 infinity = 1 % 0
 
+-- | Not a number @(0 / 0)@.
 nan :: Quotient
 nan = 0 % 0
 
+-- | Returns whether a given quotient is an infinity (+/-).
 isInfinite :: Quotient -> Bool
 isInfinite q = q == infinity || q == (-infinity)
 
+-- | Returns if the quotient is not a number.
 isNaN :: Quotient -> Bool
 isNaN q = q /= q
 
@@ -151,6 +163,21 @@ digits b q = Right (abs i,fds,pds)
   (i,q') = properFraction q
   (fds,pds) = fracDigits b q'
 
+-- | Givent a base, returns the fractional digits of a Quotient (including a
+--   period if present).
+--
+-- > > fracDigits 10 (123 / 100)
+-- > ([2,3],[])
+-- > > fracDigits 10 (12345 / 100)
+-- > ([4,5],[])
+-- > > fracDigits 10 (12345 / 10)
+-- > ([5],[])
+-- > > fracDigits 10 (100 / 10)
+-- > ([],[])
+-- > > fracDigits 10 (1 / 3)
+-- > ([],[3])
+-- > > fracDigits 10 (1 / 7)
+-- > ([],[1,4,2,8,5,7])
 fracDigits :: Int -> Quotient -> ([Int],[Int])
 fracDigits b q | q < 0  = fracDigits b (abs q)
 fracDigits b q | q >= 1 = fracDigits b (snd $ properFraction q)
