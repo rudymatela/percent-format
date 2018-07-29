@@ -121,7 +121,7 @@ showDigits spec x =
   Just q -> applyWhen (padWith spec /= ' ') (signal q ++)
           . align' q
           . applyWhen (padWith spec == ' ') (signal q ++)
-          . either id (\(i,fds,pds) -> showds i fds pds (precision spec))
+          . either id (\(ids,fds,pds) -> showds ids fds pds (precision spec))
           . digits (base spec)
           . round' (base spec) (precision spec)
           $ q
@@ -137,15 +137,15 @@ showDigits spec x =
   round' _ _ q | Q.isNaN q      = q
   round' _ Nothing  q = q
   round' b (Just p) q = round (q * fromIntegral b ^ p) Q.% fromIntegral b ^ p
-  showds :: Integer -> [Int] -> [Int] -> Maybe Int -> String
-  showds i fds []  Nothing  | length fds < minPrecision spec
-                            = showds i (fds ++ replicate (minPrecision spec - length fds) 0) [] Nothing
-  showds i []  _   Nothing  = showWithBase (base spec) i
-  showds i fds pds (Just 0) = showWithBase (base spec) i
-  showds i fds pds Nothing  = showWithBase (base spec) i ++ "."
-                           ++ intsToDigits fds ++ showPeriod pds
-  showds i fds pds (Just pr) = showWithBase (base spec) i ++ "."
-                            ++ intsToDigits (take pr (fds ++ loop pds ++ repeat 0))
+  showds :: [Int] -> [Int] -> [Int] -> Maybe Int -> String
+  showds ids fds []  Nothing  | length fds < minPrecision spec
+                            = showds ids (fds ++ replicate (minPrecision spec - length fds) 0) [] Nothing
+  showds ids []  _   Nothing  = intsToDigits ids
+  showds ids fds pds (Just 0) = intsToDigits ids
+  showds ids fds pds Nothing  = intsToDigits ids ++ "."
+                             ++ intsToDigits fds ++ showPeriod pds
+  showds ids fds pds (Just pr) = intsToDigits ids ++ "."
+                              ++ intsToDigits (take pr (fds ++ loop pds ++ repeat 0))
   showPeriod [] = ""
   showPeriod xs = intsToDigits xs
                ++ intsToDigits xs

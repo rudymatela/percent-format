@@ -26,6 +26,7 @@ import Data.Maybe (fromMaybe)
 import Data.List (findIndex)
 import Data.Functor ((<$>))
 import qualified Data.Ratio as R
+import Text.PercentFormat.Utils
 
 -- | Our own Ratio type that allows Infinity and NaN
 data Quotient = Integer :% Integer
@@ -135,32 +136,35 @@ readQ = fromMaybe (error "No number to read") . maybeReadQ
 --   The signal is ignored.
 --
 -- > > digits 10 (1234567 / 100)
--- > Right (12345,[6,7],[])
+-- > Right ([1,2,3,4,5],[6,7],[])
 -- > > digits 10 (1/3)
--- > Right (0,[3],1)
+-- > Right ([0],[3],1)
 -- > > digits 10 (1/6)
--- > Right (0,[1,6],1)
+-- > Right ([0],[1,6],1)
 -- > > digits 10 (1/7)
--- > Right (0,[1,4,2,8,5,7],6)
+-- > Right ([0],[1,4,2,8,5,7],6)
 -- > > digits 10 (1/11)
--- > Right (0,[0,9],2)
+-- > Right ([0],[0,9],2)
 -- > digits 10 (1/12)
--- > Right (0,[0,8,3],1)
+-- > Right ([0],[0,8,3],1)
 -- > > digits 10 (1/13)
--- > Right (0,[0,7,6,9,2,3],6)
+-- > Right ([0],[0,7,6,9,2,3],6)
 -- > > digits 10 123
--- > Right (123,[],[])
+-- > Right ([1,2,3],[],[])
 -- > > digits 10 (-4/3)
--- > Right (1,[],[3])
+-- > Right ([1],[],[3])
 -- > > digits 10 (-1/3)
--- > Right (0,[],[3])
-digits :: Int -> Quotient -> Either String (Integer,[Int],[Int])
+-- > Right ([0],[],[3])
+digits :: Int -> Quotient -> Either String ([Int],[Int],[Int])
 digits b (0 :% 0) = Left "NaN"
 digits b (n :% 0) = Left "Infinity"
-digits b q = Right (abs i,fds,pds)
+digits b q = Right (ids,fds,pds)
   where
   (i,q') = properFraction q
   (fds,pds) = fracDigits b q'
+  ids = case integerToDigits b i of
+        [] -> [0]
+        ds -> ds
 
 -- | Givent a base, returns the fractional digits of a Quotient (including a
 --   period if present).
