@@ -34,3 +34,4 @@ tests/test-prop
 tests/test-quotient
 tests/test-spec
 tests/test-unit
+tests/test-scientific

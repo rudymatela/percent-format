@@ -7,6 +7,7 @@ TESTS = \
   tests/test-spec \
   tests/test-unit \
   tests/test-number \
+  tests/test-scientific \
   tests/test-quotient \
   tests/test-prop
 EGS =
