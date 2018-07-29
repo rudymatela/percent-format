@@ -25,6 +25,7 @@ tests =
   , parseSpec "07.*i" ==- spec {ty = NumberSpec, width =  7,  padWith = '0'}
   , parseSpec "073i" ==- spec {ty = NumberSpec, width =  73, padWith = '0', precision = Just 0}
   , parseSpec "x"    ==- spec {ty = NumberSpec, base = 16}
+  , parseSpec "X"    ==- spec {ty = NumberSpec, base = 16, capitalizeDigits = True}
   , parseSpec "o"    ==- spec {ty = NumberSpec, base =  8}
   , parseSpec "b"    ==- spec {ty = NumberSpec, base =  2}
   , parseSpec "d"    ==- spec {ty = NumberSpec, positivePrefix=""}

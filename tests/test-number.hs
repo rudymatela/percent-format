@@ -132,6 +132,9 @@ tests =
   , "asdf %r qwer" -% (10 R.% 3) == "asdf 10 % 3 qwer"
   , "asdf %07.3f qwer" -% (10 R.% 3) == "asdf 003.333 qwer"
 
+  , "%x" -% 0xfedcba9876543210 == "fedcba9876543210"
+  , "%X" -% 0xFEDCBA9876543210 == "FEDCBA9876543210"
+
 -- TODO: in the future, also handle Ratios nicely:
 -- NOTE: use 360 or 5040 as a default divisor (max precision)
 -- '/' can be just an alias for '.'

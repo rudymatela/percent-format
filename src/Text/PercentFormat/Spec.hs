@@ -22,6 +22,7 @@ data Spec = Spec
   , precision :: Maybe Int -- ^ only for Number types, Nothing for infinite
   , minPrecision :: Int    -- ^ minimum precision to show
   , positivePrefix :: String
+  , capitalizeDigits :: Bool -- ^ whether to capitalize (hex) digits
   }
   deriving (Eq, Show)
 
@@ -42,6 +43,7 @@ spec = Spec
   , precision = Nothing
   , minPrecision = 0
   , positivePrefix = ""
+  , capitalizeDigits = False
   }
 
 parseSpec :: String -> (Spec,String)
@@ -52,6 +54,7 @@ parseSpec ('c':cs) = (spec {ty = CharSpec  }, cs)
 parseSpec ('i':cs) = (spec {ty = NumberSpec, precision = Just 0}, cs)
 parseSpec ('d':cs) = (spec {ty = NumberSpec}, cs)
 parseSpec ('x':cs) = (spec {ty = NumberSpec, base = 16}, cs)
+parseSpec ('X':cs) = (spec {ty = NumberSpec, base = 16, capitalizeDigits = True}, cs)
 parseSpec ('o':cs) = (spec {ty = NumberSpec, base =  8}, cs)
 parseSpec ('b':cs) = (spec {ty = NumberSpec, base =  2}, cs)
 parseSpec ('f':cs) = (spec {ty = NumberSpec, minPrecision = 1}, cs)

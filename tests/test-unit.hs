@@ -30,7 +30,7 @@ tests =
   , "asdf %03o qwer" % 10     ==  "asdf 012 qwer"
   , "%b" % 10 == "1010"
   , "%08b" % 10 == "00001010"
---, "asdf %X qwer" % 10       ==  "asdf A qwer"  -- TODO: make me pass
+  , "asdf %X qwer" % 10       ==  "asdf A qwer"
 
   , "%c" % 'c' == "c"
   , "%r" % 'c' == "'c'"

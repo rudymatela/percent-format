@@ -76,7 +76,7 @@ module Text.PercentFormat
 where
 
 import Data.Maybe (listToMaybe, fromMaybe)
-import Data.Char (isDigit)
+import Data.Char (isDigit, toUpper)
 import Text.PercentFormat.Spec  as S
 import Text.PercentFormat.Utils hiding (align)
 import Text.PercentFormat.Quotient (maybeReadQ, digits, Quotient, infinity, nan)
@@ -121,11 +121,12 @@ showDigits spec x =
   Just q -> applyWhen (padWith spec /= ' ') (signal q ++)
           . align' q
           . applyWhen (padWith spec == ' ') (signal q ++)
-          . either id (\(ids,fds,pds) -> showds ids fds pds (precision spec))
+          . either id (\(ids,fds,pds) -> capitalize $ showds ids fds pds (precision spec))
           . digits (base spec)
           . round' (base spec) (precision spec)
           $ q
   where
+  capitalize = applyWhen (capitalizeDigits spec) (map toUpper)
   signal q | q >= 0 = positivePrefix spec
            | q <  0 = "-"
   align' :: Quotient -> String -> String

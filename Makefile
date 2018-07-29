@@ -79,6 +79,7 @@ examples-diff-test: bench/examples
 	./bench/examples "%b"        | diff -rud tests/diff/examples-b.out       -
 	./bench/examples "%o"        | diff -rud tests/diff/examples-o.out       -
 	./bench/examples "%x"        | diff -rud tests/diff/examples-x.out       -
+	./bench/examples "%X"        | diff -rud tests/diff/examples-X.out       -
 	./bench/examples "abc"       | diff -rud tests/diff/examples-abc.out     -
 
 update-examples-diff-test: bench/examples
@@ -106,6 +107,7 @@ update-examples-diff-test: bench/examples
 	./bench/examples "%b"        > tests/diff/examples-b.out
 	./bench/examples "%o"        > tests/diff/examples-o.out
 	./bench/examples "%x"        > tests/diff/examples-x.out
+	./bench/examples "%X"        > tests/diff/examples-X.out
 	./bench/examples "abc"       > tests/diff/examples-abc.out
 
 # NOTE: (very hacky!) the following target allows parallel compilation (-jN) of
