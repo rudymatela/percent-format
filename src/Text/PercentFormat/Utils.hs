@@ -19,6 +19,7 @@ module Text.PercentFormat.Utils
   , theLast
   , loop
   , none
+  , integerToDigits
   )
 where
 
@@ -73,11 +74,14 @@ leftAlign c width s | width <= len = s
 showWithBase :: Integral a => Int -> a -> String
 showWithBase b 0 = "0"
 showWithBase b n | n < 0     = '-':showWithBase b (abs n)
-                 | otherwise = map (intToDigit . fromIntegral)
-                             . reverse
-                             . unfoldr (\n -> listToMaybe [swap $ n `divMod` fromIntegral b | n /= 0])
-                             $ n
+                 | otherwise = map intToDigit $ integerToDigits b n
 
+integerToDigits :: Integral a => Int -> a -> [Int]
+integerToDigits b =
+    map fromIntegral
+  . reverse
+  . unfoldr (\n -> listToMaybe [swap $ n `divMod` fromIntegral b | n /= 0])
+  . abs
 
 applyWhen :: Bool -> (a -> a) -> a -> a
 applyWhen True  f x = f x
