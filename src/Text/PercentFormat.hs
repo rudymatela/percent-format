@@ -13,19 +13,19 @@
 -- output in the supported formats.
 --
 --
--- Formatting one value:
+-- Formatting one value with '-%':
 --
 -- > > "Hello %s!" -% "World"
 -- > "Hello World!"
 --
 --
--- Formatting three values, tuple style:
+-- Formatting three values, tuple style, with '-%%%':
 --
 -- > > "load average: %1.2f %1.2f %1.2f" -%%% (0.00, 0.066, 0.11)
 -- > "load average: 0.00 0.07 0.11"
 --
 --
--- Formatting three values, chain style:
+-- Formatting three values, chain style, with '%' and '-%':
 --
 -- > > "load average: %1.2f %1.2f %1.2f" % 0.00 % 0.066 -% 0.11
 -- > "load average: 0.00 0.07 0.11"
@@ -49,7 +49,7 @@
 -- > > "percent sign: %s, memory usage: %i%%" % "%" -% 87
 -- > "percent sign: %, memory usage: 87%"
 --
--- To print, just prefix you format expression with @putStrLn $@:
+-- To print, just prefix you format expression with "@putStrLn $@":
 --
 -- > > putStrLn $ "Hello %s!" -% "World"
 -- > Hello World!
