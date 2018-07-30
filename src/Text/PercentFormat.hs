@@ -52,6 +52,31 @@
 --
 -- > > putStrLn $ "Hello %s!" -% "World"
 -- > Hello World!
+--
+--
+-- This library is designed to avoid raising errors.
+-- If conversion cannot be performed an exclamation mark (@!@) is produced.
+-- If there are missing format strings an interrogation mark (@?@) is produced.
+-- For example:
+--
+-- > > "%d %d" -% "Ten"
+-- > "! ?"
+--
+-- The only two instances where errors are raised are:
+--
+-- 1. the argument values contain errors themselves:
+--
+--     > > "Hello %s!" % error "err"
+--     > *** Exception err
+--
+--     > > error "err" % "World"
+--     > *** Exception err
+--
+--
+-- 2. the format string is not supported:
+--
+--     > > "%j" % 10
+--     > *** Exception: unknown format string `j'
 module Text.PercentFormat
   ( (%)
   , (-%)
