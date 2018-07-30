@@ -7,7 +7,7 @@
 -- This file is part of PercentFormat a library for printf-style string
 -- formatting.
 --
--- This module provides the Spec type which represents a @%...% specification
+-- This module provides the Spec type which represents a @%...@ specification
 -- format.
 module Text.PercentFormat.Spec where
 
