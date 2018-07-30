@@ -9,7 +9,8 @@
 -- and uses the old C-printf-style format you know and love.
 --
 -- This library differs from 'Text.Printf' in that it does not rely on custom
--- typeclasses -- it works on anything that is a 'Show' instance.
+-- typeclasses -- it works on anything that is a 'Show' instance that produces
+-- output in the supported formats.
 --
 --
 -- Formatting one value:
@@ -54,6 +55,73 @@
 -- > Hello World!
 --
 --
+-- == Supported formats
+--
+-- * /r/ -- 'show' representation as-is (including quotes for strings).
+--
+--     > > "%r" % "string"
+--     > "\"string\""
+--
+--     > > "%r" % Just 10
+--     > "Just 10"
+--
+-- * /s/ -- string.  If the argument is 'show'ed as a 'String', intersperse it,
+--          otherwise include representation in whole.
+--
+--     > > ":%s:" % "string"
+--     > ":string:"
+--
+--     > > ":%s:" % 10
+--     > ":10:"
+--
+--     > > ":%s:" % Just "string"
+--     > ":Just "string":"
+--
+-- * /c/ -- character.
+--
+--     > > "%c" % 'a'
+--     > "a"
+--
+-- * /i/ -- Argument is converted to the nearest decimal integer.
+--   Accepts arguments that when 'show'ed are represented as either
+--   'Integer's, 'Rational's or 'Double's.
+--
+--     > > "%i" % 5040
+--     > 5040
+--     > > "%i" % 3.141
+--     > 3
+--
+-- * /d/ -- Argument is converted to a decimal integer.
+--   Accepts arguments that when 'show'ed are represented as either
+--   'Integer's, 'Rational's or 'Double's.
+--
+--     > > "%d" % 5040
+--     > 5040
+--     > > "%i" % 3.141
+--     > 3.141
+--
+-- * ...
+--
+--
+-- == Supported flag charaters
+--
+-- TODO: TBA.
+--
+--
+-- == How does it work?
+--
+-- TODO: TBA.
+--
+-- > data Digit = Zero | One | Two | Three
+-- > instance Show Digit where
+-- >   show Zero   =  "0"
+-- >   show One    =  "1"
+-- >   show Two    =  "2"
+-- >   show Three  =  "3"
+--
+--
+-- == Error Handling
+--
 -- This library is designed to avoid raising errors.
 -- If conversion cannot be performed an exclamation mark (@!@) is produced.
 -- If there are missing format strings an interrogation mark (@?@) is produced.
@@ -71,7 +139,6 @@
 --
 --     > > error "err" % "World"
 --     > *** Exception err
---
 --
 -- 2. the format string is not supported:
 --
