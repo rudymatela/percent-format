@@ -70,7 +70,7 @@ parseSpec ('.':cs)             = let (w,cs')  = span isDigit cs
 parseSpec ('-':cs) = (s {leftAlign = True}, cs')     where (s,cs') = parseSpec cs
 parseSpec (' ':cs) = (s {positivePrefix = " "}, cs') where (s,cs') = parseSpec cs
 parseSpec ('+':cs) = (s {positivePrefix = "+"}, cs') where (s,cs') = parseSpec cs
-parseSpec     _    = error "unknown format string"
+parseSpec (c:_)    = error $ "unknown format string `" ++ (c:"'")
 -- NOTE: for some reason:
 -- > reads "4a" :: [(Int,String)]
 -- [(4,"a")]
