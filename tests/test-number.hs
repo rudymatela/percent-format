@@ -135,6 +135,12 @@ tests =
   , "%x" -% 0xfedcba9876543210 == "fedcba9876543210"
   , "%X" -% 0xFEDCBA9876543210 == "FEDCBA9876543210"
 
+  , "%i" % pi == "3"
+  , "%d" % pi == "3.141592653589793"
+  , "%.30x" % pi == "3.243f6a8885a2f7a4371af0ae7bc9d6"
+  , "%.30b" % pi == "11.001001000011111101101010100010"
+
+
 -- TODO: in the future, also handle Ratios nicely:
 -- NOTE: use 360 or 5040 as a default divisor (max precision)
 -- '/' can be just an alias for '.'
