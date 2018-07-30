@@ -70,8 +70,6 @@ module Text.PercentFormat
   , (-%%%%%%)
 
   , (+%)
-
-  , showDigits
   )
 where
 
