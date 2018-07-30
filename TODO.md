@@ -3,6 +3,8 @@ TO DO list for PercentFormat
 
 TO DO list for PercentFormat, more or less in order:
 
+* improve docs listing supported formats (%a %b %c ...);
+
 * sweep `TODO`s scattered through files;
 
 * on the `Makefile`:

@@ -33,8 +33,8 @@ data Quotient = Integer :% Integer
 infixl 7 :%
 
 -- | 'Eq' instance for 'Quotient'.  Follows the identity property except for
---   NaN which is different from itself (this is consistent with Float & Double
---   behaviour).
+--   NaN which is different from itself (this is consistent with 'Float' &
+--   'Double' behaviour).
 instance Eq Quotient where
   (0 :% 0) == _  =  False
   _ == (0 :% 0)  =  False
@@ -42,10 +42,10 @@ instance Eq Quotient where
 
 -- | 'Ord' instance for 'Quotient'.  Follows the regular order properties
 --   except for NaN.  When NaN is present in any of the operands of 'compare',
---   'GT' is returned.
+--   'GT' is returned (consistent with 'Float' & 'Double').
 instance Ord Quotient where
-  (0 :% 0) `compare` _  =  GT  -- consistent with Float & Double
-  _ `compare` (0 :% 0)  =  GT  -- consistent with Float & Double
+  (0 :% 0) `compare` _  =  GT
+  _ `compare` (0 :% 0)  =  GT
   (x :% y) `compare` (x' :% y') = (x * y') `compare` (x' * y)
 
 instance Show Quotient where
