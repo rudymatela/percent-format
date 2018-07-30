@@ -88,6 +88,7 @@
 --
 --     > > "%i" % 5040
 --     > 5040
+--
 --     > > "%i" % 3.141
 --     > 3
 --
@@ -97,10 +98,26 @@
 --
 --     > > "%d" % 5040
 --     > 5040
+--
 --     > > "%i" % 3.141
 --     > 3.141
 --
--- * ...
+-- * /x/ -- Argument is converted to hexadecimal format with lowercase letters.
+--   Accepts arguments that when 'show'ed are represented as either
+--   'Integer's, 'Rational's or 'Double's.
+--
+--     > > "%x" % 5040
+--     > "13b0"
+--
+--     > > "%.6x" % pi
+--     > "3.243f6b"
+--
+-- * /X/ -- Argument is converted to hexadecimal format with capital letters.
+--   Accepts arguments that when 'show'ed are represented as either
+--   'Integer's, 'Rational's or 'Double's.
+--
+--     > > "%X" % 5040
+--     > "13B0"
 --
 --
 -- == Supported flag charaters
@@ -110,7 +127,8 @@
 --
 -- == How does it work?
 --
--- TODO: TBA.
+-- "Text.PercentFormat" works on values that are 'Show' instances producing
+-- results in the expected format.  Take for example the following number type:
 --
 -- > data Digit = Zero | One | Two | Three
 -- > instance Show Digit where
@@ -118,6 +136,11 @@
 -- >   show One    =  "1"
 -- >   show Two    =  "2"
 -- >   show Three  =  "3"
+--
+-- "Text.PercentFormat" works fine on it:
+--
+-- > > "%d %i %f %.2f" Zero One Two Three
+-- > "0 1 2 3.00"
 --
 --
 -- == Error Handling
@@ -144,6 +167,13 @@
 --
 --     > > "%j" % 10
 --     > *** Exception: unknown format string `j'
+--
+--
+-- == Known bugs
+--
+-- * @"%x" % 3.1415926@ takes too long to run.
+--
+-- * @"%x" % pi@ takes /very very long/ to run.
 module Text.PercentFormat
   ( (%)
   , (-%)
