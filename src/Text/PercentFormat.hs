@@ -82,6 +82,20 @@ import qualified Text.PercentFormat.Quotient as Q
 import qualified Text.PercentFormat.Utils as U
 import Prelude hiding (showString, showChar)
 
+-- | Formats a single value into a string without finalizing:
+--   leaving duplicate percent signs & remaining format sequences.
+--
+-- > > "Hello %s!" % "World"
+-- > "Hello World!"
+--
+-- > > "processor usage: %d%%" % 67
+-- > "processor usage: 67%%"
+--
+-- > > "load avg: %.2f %.2f %.2f" % 0.666
+-- > "load avg: %0.67 %.2f %.2f"
+--
+-- Please use '-%' when formatting the last value into a string so that
+-- duplicate percent signs are removed.
 (%) :: Show a => String -> a -> String
 ('%':s) % x =
   case ty sp of
@@ -154,6 +168,20 @@ showDigits spec x =
 err :: Char -> Spec -> String
 err c spec = align spec{padWith=c} (c:"")
 
+-- | Formats the last value into a string.
+--   This finalizes formatting, removing duplicate percent signs and replacing
+--   remaining format sequences with interrogation marks.
+--
+-- > > "Hello %s!" -% "World"
+-- > "Hello World!"
+--
+-- > > "processor usage: %d%%" -% 67
+-- > "processor usage: 67%"
+--
+-- > > "load avg: %.2f %.2f %.2f" % 0.666
+-- > "load avg: %0.67 ? ?"
+--
+-- Please use '%' if you intend to further format values (chaining).
 (-%) :: Show a => String -> a -> String
 s -% x = s % x /% '?'
 infixl 9 -%
@@ -194,36 +222,79 @@ duplicatePercents ('%':s) = '%':'%':duplicatePercents s
 duplicatePercents (c:s)   = c:duplicatePercents s
 duplicatePercents ""      = ""
 
+-- | Formats two values into a string without finalizing:
+--   leaving duplicate percent signs & remaining format sequences.
+--
+-- > > "%s %s!" %% ("Hello","World")
+-- > "Hello World!"
+--
+-- > > "load avg: %.2f %.2f %.2f" %% (0.666,0.333)
+-- > "load avg: %0.67 %0.33 %.2f"
+--
+-- In general:
+--
+-- > s %% (x,y) == s % x % y
+--
+-- Please use '-%%' if you don't intend to format values into a string any further.
 (%%) :: (Show a, Show b) => String -> (a,b) -> String
 s %% (x,y) = s % x % y
 
+-- | Formats three values into a string without finalizing.
+--
+-- > > "load avg: %.2f %.2f %.2f" %%% (0.666,0.333,0.1)
+-- > "load avg: %0.67 %0.33 %0.10"
 (%%%) :: (Show a, Show b, Show c) => String -> (a,b,c) -> String
 s %%% (x,y,z) = s % x % y % z
 
+-- | Formats four values into a string without finalizing.
 (%%%%) :: (Show a, Show b, Show c, Show d) => String -> (a,b,c,d) -> String
 s %%%% (x,y,z,w) = s % x % y % z % w
 
+-- | Formats five values into a string without finalizing.
 (%%%%%) :: (Show a, Show b, Show c, Show d, Show e)
         => String -> (a,b,c,d,e) -> String
 s %%%%% (x,y,z,w,v) = s % x % y % z % w % v
 
+-- | Formats six values into a string without finalizing.
 (%%%%%%) :: (Show a, Show b, Show c, Show d, Show e, Show f)
          => String -> (a,b,c,d,e,f) -> String
 s %%%%%% (x,y,z,w,v,u) = s % x % y % z % w % v % u
 
+-- | Formats two values into a string and finalizes it:
+--   removing duplicate percent signs & replacing remaining format sequences
+--   with interrogation marks.
+--
+-- > > "%s %s!" -%% ("Hello","World")
+-- > "Hello World!"
+--
+-- > > "load avg: %.2f %.2f %.2f" -%% (0.666,0.333)
+-- > "load avg: %0.67 %0.33 ?"
+--
+-- In general:
+--
+-- > s -%% (x,y) == s % x -% y
+--
+-- Please use '%%' if you intend to further format values.
 (-%%) :: (Show a, Show b) => String -> (a,b) -> String
 s -%% t = s %% t /% '?'
 
+-- | Formats three values into a string and finalizes it.
+--
+-- > > "load avg: %.2f %.2f %.2f" -%%% (0.666,0.333,0.1)
+-- > "load avg: %0.67 %0.33 %0.10"
 (-%%%) :: (Show a, Show b, Show c) => String -> (a,b,c) -> String
 s -%%% t = s %%% t /% '?'
 
+-- | Formats four values into a string and finalizes it.
 (-%%%%) :: (Show a, Show b, Show c, Show d) => String -> (a,b,c,d) -> String
 s -%%%% t = s %%%% t /% '?'
 
+-- | Formats five values into a string and finalizes it.
 (-%%%%%) :: (Show a, Show b, Show c, Show d, Show e)
         => String -> (a,b,c,d,e) -> String
 s -%%%%% t = s %%%%% t /% '?'
 
+-- | Formats six values into a stirng and finalizes it.
 (-%%%%%%) :: (Show a, Show b, Show c, Show d, Show e, Show f)
          => String -> (a,b,c,d,e,f) -> String
 s -%%%%%% t = s %%%%%% t /% '?'
