@@ -5,7 +5,7 @@ PercentFormat -- C-like printf-style string formatting for Haskell
 [![PercentFormat on Hackage][hackage-version]][percent-format-on-hackage]
 
 The `Text.PercentFormat` library provides printf-style string formatting.  It
-provides a `%` operator (as in Ruby or Python) and uses the old C-printf-style
+provides a [`%`] operator (as in Ruby or Python) and uses the old C-printf-style
 format you know and love.
 
 This library differs from `Text.Printf` in that it does not rely on custom
@@ -17,12 +17,12 @@ Formatting one value:
 	> "Hello %s!" -% "World"
 	"Hello World!"
 
-Formatting three values, tuple style:
+Formatting three values, tuple style, using [`-%%%`]:
 
 	> "load average: %1.2f %1.2f %1.2f" -%%% (0.00, 0.066, 0.11)
 	"load average: 0.00 0.07 0.11"
 
-Formatting three values, chain style:
+Formatting three values, chain style, using [`%`] and [`-%`]:
 
 	> "load average: %1.2f %1.2f %1.2f" % 0.00 % 0.066 -% 0.11
 	"load average: 0.00 0.07 0.11"
@@ -35,12 +35,12 @@ use two percent signs (`%%`):
 	"memory usage: 13%"
 
 
-Percent signs are duplicated when using the `%` operator to allow chaining:
+Percent signs are duplicated when using the [`%`] operator to allow chaining:
 
 	> "percent sign: %s, memory usage: %i%%" % "%" % 87
 	"percent sign: %%, memory usage: 87%%"
 
-_Always_ use the `-%` operator when formatting the _last value_
+_Always_ use the [`-%`] operator when formatting the _last value_
 to remove duplicate `%` signs:
 
 	> "percent sign: %s, memory usage: %i%%" % "%" -% 87
@@ -51,7 +51,14 @@ To print, just prefix you format expression with `putStrLn $`:
 	> putStrLn $ "Hello %s!" -% "World"
 	Hello World!
 
+For more information and a detailed list of options, see
+	[PercentFormat's Haddock Documentation].
+
 [build-status]: https://travis-ci.org/rudymatela/percent-format.svg?branch=master
 [build-log]:    https://travis-ci.org/rudymatela/percent-format
 [hackage-version]: https://img.shields.io/hackage/v/percent-format.svg
 [percent-format-on-hackage]: https://hackage.haskell.org/package/percent-format
+[PercentFormat's Haddock Documentation]: https://hackage.haskell.org/package/percent-format/docs/Text-PercentFormat.html
+[`%`]: https://hackage.haskell.org/package/percent-format-0.0.1/docs/Text-PercentFormat.html#v:-37-
+[`-%`]: https://hackage.haskell.org/package/percent-format-0.0.1/docs/Text-PercentFormat.html#v:-45--37-
+[`-%%%`]: https://hackage.haskell.org/package/percent-format-0.0.1/docs/Text-PercentFormat.html#v:-45--37--37--37-
