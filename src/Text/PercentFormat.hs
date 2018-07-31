@@ -4,7 +4,7 @@
 -- License     : 3-Clause BSD  (see the file LICENSE)
 -- Maintainer  : Rudy Matela <rudy@matela.com.br>
 --
--- The 'Text.PercentFormat' library provides printf-style string formatting.
+-- The "Text.PercentFormat" library provides printf-style string formatting.
 -- It provides a '%' operator (as in Ruby or Python)
 -- and uses the old C-printf-style format you know and love.
 --
@@ -38,7 +38,8 @@
 -- > "memory usage: 13%"
 --
 --
--- Percent signs are duplicated when using the '%' operator to allow chaining:
+-- Percent signs are duplicated when using the '%' operator to allow chaining
+-- (further formats):
 --
 -- > > "percent sign: %s, memory usage: %i%%" % "%" % 87
 -- > "percent sign: %%, memory usage: 87%%"
@@ -180,10 +181,10 @@
 --
 -- * /+/ -- leave a plus sign before a positive number.
 --
---     > > "% i" % 5040
+--     > > "%+i" % 5040
 --     > "+5040"
 --
---     > > "% i" % (-5040)
+--     > > "%+i" % (-5040)
 --     > "-5040"
 --
 -- * /[1-9][0-9]*/ -- minimum field width.
