@@ -218,7 +218,7 @@
 -- > > "%d %i %f %.2f" Zero One Two Three
 -- > "0 1 2 3.00"
 --
--- Because when 'show'ed, values of this @Digit@ type are represented as 'Integers'.
+-- Because when 'show'ed, values of this @Digit@ type are represented as 'Integer's.
 --
 --
 -- == Error Handling
