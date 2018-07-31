@@ -24,7 +24,6 @@ import Prelude hiding (isInfinite, isNaN)
 import Data.Char (isDigit)
 import Data.Maybe (fromMaybe)
 import Data.List (findIndex)
-import Data.Functor ((<$>))
 import qualified Data.Ratio as R
 import Text.PercentFormat.Utils
 
@@ -106,6 +105,9 @@ maybeReadQ :: String -> Maybe Quotient
 maybeReadQ "Infinity" = Just infinity
 maybeReadQ "NaN"      = Just nan
 maybeReadQ ('-':s)    = negate <$> maybeReadQ s
+  where
+  f <$> Nothing   =  Nothing
+  f <$> (Just x)  =  Just (f x)
 maybeReadQ ('(':s)    = case span (/= ')') s of
                         (s',')':s'') -> maybeReadQ (s' ++ s'') -- ugly!
                         _ -> Nothing

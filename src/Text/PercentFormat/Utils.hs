@@ -27,7 +27,6 @@ where
 
 import Data.Maybe (listToMaybe)
 import Data.List (unfoldr)
-import Data.Tuple (swap)
 import Data.Char (intToDigit)
 
 -- | Reads a value encoded as a string,
@@ -83,6 +82,9 @@ integerToDigits b =
   . reverse
   . unfoldr (\n -> listToMaybe [swap $ n `divMod` fromIntegral b | n /= 0])
   . abs
+  where
+  swap (x,y) = (y,x)  -- not available on Hugs
+
 
 applyWhen :: Bool -> (a -> a) -> a -> a
 applyWhen True  f x = f x
