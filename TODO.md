@@ -3,24 +3,25 @@ TO DO list for PercentFormat
 
 TO DO list for PercentFormat, more or less in order:
 
-* improve docs listing supported formats (%a %b %c ...);
-
-* sweep `TODO`s scattered through files;
-
 * on the `Makefile`:
 	- add `legacy-test` target;
 	- add `legacy-test-via-cabal` target;
 	- add `hugs-test` target;
 
-* add `%e`;
-
 * when `%s` argument is char, generate `<char>` instead of `'<char>'`;
+
+* when `%i`/`%f`/etc argument is a number encoded in a string, parse the number
+  and make it work;
+
+* add `%e`;
 
 * release percent-format package on Hackage;
 
 * add link to Haddock documentation on README;
 
 * add `%q` (see `tests/test-number.hs`);
+
+* sweep `TODO`s scattered through files;
 
 * *maybe*: make "%l" for lists:
 
