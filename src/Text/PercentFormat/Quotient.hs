@@ -104,6 +104,8 @@ instance RealFrac Quotient where
 maybeReadQ :: String -> Maybe Quotient
 maybeReadQ "Infinity" = Just infinity
 maybeReadQ "NaN"      = Just nan
+maybeReadQ "inf"      = Just infinity  -- for Hugs
+maybeReadQ "nan"      = Just nan       -- for Hugs
 maybeReadQ ('-':s)    = negate <$> maybeReadQ s
   where
   f <$> Nothing   =  Nothing
