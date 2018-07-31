@@ -151,6 +151,12 @@
 --     > > "%f" % pi
 --     > "3.141592653589793"
 --
+-- * /e/ -- Argument is converted to scientific notation.
+--       __This does not work yet.  To be added in a future version.__
+--
+-- * /q/ -- Argument is converted to a rational number.
+--       __This does not work yet.  To be added in a future version.__
+--
 --
 -- == Supported flag charaters
 --
