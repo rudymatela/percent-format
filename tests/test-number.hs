@@ -3,6 +3,7 @@
 import Test
 
 import Text.PercentFormat
+import Text.PercentFormat.Quotient (Quotient)
 import Data.List (isInfixOf)
 
 import qualified Data.Ratio as R
@@ -83,7 +84,10 @@ tests =
   , "%.1f" % 1.16 == "1.2"
   , "%.1f" % 1.15 == "1.2"  -- round to the nearest even number
   , "%.1f" % 1.25 == "1.2"  -- round to the nearest even number
-  , "%17.8f" % 12345678.12345678 == "12345678.12345678"
+  , "%15.7f" % 1234567.1234567 == "1234567.1234567"
+  , "%17.8f" % (12345678.12345678 :: Quotient) == "12345678.12345678"
+--, "%17.8f" % 12345678.12345678 == "12345678.12345678"  -- GHC
+--, "%17.8f" % 12345678.12345678 == "12345678.12345680"  -- Hugs
 
   -- fractional digits in other bases
   , "%.2x" % (1.0 / 200.0) == "0.01"
@@ -135,10 +139,12 @@ tests =
   , "%x" -% 0xfedcba9876543210 == "fedcba9876543210"
   , "%X" -% 0xFEDCBA9876543210 == "FEDCBA9876543210"
 
-  , "%i" % pi == "3"
-  , "%d" % pi == "3.141592653589793"
-  , "%.30x" % pi == "3.243f6a8885a2f7a4371af0ae7bc9d6"
-  , "%.30b" % pi == "11.001001000011111101101010100010"
+  , "%i"    % pi == "3"
+  , "%.8d"  % pi == "3.14159265"
+--, "%d"    % pi == "3.14159265358979"   -- Hugs
+--, "%d"    % pi == "3.141592653589793"  -- GHC
+  , "%.8x" % pi == "3.243f6a89"
+  , "%.12b" % pi == "11.001001000100"
 
 
 -- TODO: in the future, also handle Ratios nicely:
