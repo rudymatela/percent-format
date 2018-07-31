@@ -1,6 +1,9 @@
 PercentFormat -- C-like printf-style string formatting for Haskell
 ==================================================================
 
+[![PercentFormat's Build Status][build-status]][build-log]
+[![PercentFormat on Hackage][hackage-version]][percent-format-on-hackage]
+
 The `Text.PercentFormat` library provides printf-style string formatting.  It
 provides a `%` operator (as in Ruby or Python) and uses the old C-printf-style
 format you know and love.
@@ -47,3 +50,8 @@ To print, just prefix you format expression with `putStrLn $`:
 
 	> putStrLn $ "Hello %s!" -% "World"
 	Hello World!
+
+[build-status]: https://travis-ci.org/rudymatela/percent-format.svg?branch=master
+[build-log]:    https://travis-ci.org/rudymatela/percent-format
+[hackage-version]: https://img.shields.io/hackage/v/percent-format.svg
+[percent-format-on-hackage]: https://hackage.haskell.org/package/percent-format
