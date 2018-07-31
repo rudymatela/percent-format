@@ -111,6 +111,15 @@
 --     > > "%x" % 5040
 --     > "13b0"
 --
+--     Differently from C's @printf@, negative integers are printed prefixed with
+--     a minus (@-@) sign:
+--
+--     > > "%x" % (-5040)
+--     > "-13b0"
+--
+--     Differently from C's @printf@, this library is able to show hexadecimal
+--     fractional parts:
+--
 --     > > "%.6x" % pi
 --     > "3.243f6b"
 --
