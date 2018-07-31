@@ -74,7 +74,11 @@ ghci: mk/All.ghci
 
 hugs: mk/All.hugs
 
-hugs-test: tests/test-unit.runhugs
+hugs-test: \
+  tests/test-spec.runhugs \
+  tests/test-unit.runhugs \
+  tests/test-number.runhugs \
+  tests/test-scientific.runhugs
 
 diff-test: examples-diff-test
 
