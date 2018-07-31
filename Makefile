@@ -74,6 +74,8 @@ ghci: mk/All.ghci
 
 hugs: mk/All.hugs
 
+hugs-test: tests/test-unit.runhugs
+
 diff-test: examples-diff-test
 
 update-diff-test: update-examples-diff-test
