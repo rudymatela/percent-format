@@ -189,7 +189,7 @@ fracDigits b q = let (fds,psz) = fun [] q
                  in splitAt fsz fds
   where
   fun :: [(Integer,Integer)] -> Quotient -> ([Int],Int)
-  fun hist 0 = ([],0)
+  fun hist (0 :% _) = ([],0)
   fun hist (x :% y) = case findIndex (==(x,y)) hist of
                       Nothing -> (fromInteger q:fds,psz)
                       Just i -> ([],i+1)
