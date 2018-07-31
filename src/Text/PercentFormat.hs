@@ -8,7 +8,7 @@
 -- It provides a '%' operator (as in Ruby or Python)
 -- and uses the old C-printf-style format you know and love.
 --
--- This library differs from 'Text.Printf' in that it does not rely on custom
+-- This library differs from "Text.Printf" in that it does not rely on custom
 -- typeclasses -- it works on anything that is a 'Show' instance that produces
 -- output in the supported formats.
 --
