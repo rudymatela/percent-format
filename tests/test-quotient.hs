@@ -8,6 +8,17 @@ import Test.LeanCheck.Utils
 import Text.PercentFormat.Quotient as Q
 import Text.PercentFormat.Utils
 
+quotient :: Quotient
+quotient  =  error "dummy quotient value"
+
+instance Listable Quotient where
+  tiers  =  mapT (uncurry (Q.%)) . reset
+         $  tiers `suchThat` canonical
+    where
+    --canonical (0,0)  =  True
+    --canonical (1,0)  =  True
+    canonical (n,d)  =  d > 0 && n `gcd` d == 1
+
 main :: IO ()
 main = reportTests (tests 360)
 
