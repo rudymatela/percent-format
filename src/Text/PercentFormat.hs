@@ -68,16 +68,17 @@
 -- * /s/ -- string.  If the argument is 'show'ed as a 'String', intersperse it,
 --          otherwise include representation in whole.
 --
---     > > ":%s:" % "string"
---     > ":string:"
+--     > > "%s" % "string"
+--     > "string"
 --
---     > > ":%s:" % 10
---     > ":10:"
+--     > > "%s" % 10
+--     > "10"
 --
---     > > ":%s:" % Just "string"
---     > ":Just "string":"
+--     > > "%s" % Just "string"
+--     > "Just \"string\""
 --
--- * /c/ -- character.
+-- * /c/ -- Argument is converted to a single character.
+--   Accepts arguments that when 'show'ed are represented as 'Char's.
 --
 --     > > "%c" % 'a'
 --     > "a"
@@ -118,6 +119,37 @@
 --
 --     > > "%X" % 5040
 --     > "13B0"
+--
+-- * /o/ -- Argument is converted to octal format.
+--   Accepts arguments that when 'show'ed are represented as either
+--   'Integer's, 'Rational's or 'Double's.
+--
+--     > > "%o" % 5040
+--     > "11660"
+--
+--     > > "%.6o" % pi
+--     > "3.110376"
+--
+-- * /b/ -- Argument is converted to binary format.
+--   Accepts arguments that when 'show'ed are represented as either
+--   'Integer's, 'Rational's or 'Double's.
+--
+--     > > "%b" % 5040
+--     > "1001110110000"
+--
+--     > > "%.6b" % pi
+--     > "11.001001"
+--
+-- * /f/ -- Argument is converted to decimal format with a fractional part
+--   (even when the given argument is an integer).
+--   Accepts arguments that when 'show'ed are represented as either
+--   'Integer's, 'Rational's or 'Double's.
+--
+--     > > "%f" % 5040
+--     > "5040.0"
+--
+--     > > "%f" % pi
+--     > "3.141592653589793"
 --
 --
 -- == Supported flag charaters
