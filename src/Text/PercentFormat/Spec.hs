@@ -58,6 +58,9 @@ parseSpec ('X':cs) = (spec {ty = NumberSpec, base = 16, capitalizeDigits = True}
 parseSpec ('o':cs) = (spec {ty = NumberSpec, base =  8}, cs)
 parseSpec ('b':cs) = (spec {ty = NumberSpec, base =  2}, cs)
 parseSpec ('f':cs) = (spec {ty = NumberSpec, minPrecision = 1}, cs)
+parseSpec ('q':cs) = error $ "`q' format will be implemented in a future version"
+parseSpec ('e':cs) = error $ "`e' format will be implemented in a future version"
+parseSpec ('E':cs) = error $ "`E' format will be implemented in a future version"
 parseSpec ('0':cs) = (s {padWith = '0'}, cs') where (s,cs') = parseSpec cs
 parseSpec ( n :cs) | isDigit n = let (w,cs') = span isDigit (n:cs)
                                      (s,cs'') = parseSpec cs'
