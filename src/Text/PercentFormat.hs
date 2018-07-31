@@ -160,7 +160,44 @@
 --
 -- == Supported flag charaters
 --
--- TODO: TBA.
+-- * /0/ -- the numeric value should be padded by zeros.
+--
+--     > > "%08i" % 5040
+--     > "00005040"
+--
+-- * /-/ -- left adjusted values.
+--
+--     > > "%-8i" % 5040
+--     > "5040    "
+--
+-- * / / -- leave a blank before a positive number.
+--
+--     > > "% i" % 5040
+--     > " 5040"
+--
+--     > > "% i" % (-5040)
+--     > "-5040"
+--
+-- * /+/ -- leave a plus sign before a positive number.
+--
+--     > > "% i" % 5040
+--     > "+5040"
+--
+--     > > "% i" % (-5040)
+--     > "-5040"
+--
+-- * /[1-9][0-9]*/ -- minimum field width.
+--
+--     > > "%8i" % 5040
+--     > "    5040"
+--
+-- * /.[0-9][0-9]*/ -- precision.
+--
+--     > > "%.2i" % 5040
+--     > "5040.00"
+--
+--     > > "%9.2i" % 5040
+--     > "  5040.00"
 --
 --
 -- == How does it work?
