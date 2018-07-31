@@ -499,7 +499,7 @@ s -%%%%% t = s %%%%% t /% '?'
          => String -> (a,b,c,d,e,f) -> String
 s -%%%%%% t = s %%%%%% t /% '?'
 
--- | Just an alias to '%' for use whenever 'Data.Ratio' is in scope.
+-- | Just an alias to '%' for use whenever "Data.Ratio" is in scope.
 --
 -- > import Data.Ratio
 -- > import Text.PercentFormat hiding ((%))
