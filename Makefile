@@ -27,6 +27,9 @@ test-via-cabal:
 test-via-stack:
 	stack test
 
+test-sdist:
+	./tests/test-sdist
+
 legacy-test: # needs ghc-8.0 .. ghc-7.8 installed as such
 	make clean  &&  make test GHC=ghc-8.2  GHCFLAGS="-Werror -dynamic"
 	make clean  &&  make test GHC=ghc-8.0  GHCFLAGS="-Werror -dynamic"
@@ -34,8 +37,21 @@ legacy-test: # needs ghc-8.0 .. ghc-7.8 installed as such
 	make clean  &&  make test GHC=ghc-7.8  GHCFLAGS="-Werror -dynamic"
 	make clean  &&  make test
 
-test-sdist:
-	./tests/test-sdist
+legacy-test-via-cabal: # needs similarly named cabal wrappers
+	cabal clean  &&  cabal-ghc-8.2  configure  &&  cabal-ghc-8.2  test
+	cabal clean  &&  cabal-ghc-8.0  configure  &&  cabal-ghc-8.0  test
+	cabal clean  &&  cabal-ghc-7.10 configure  &&  cabal-ghc-7.10 test
+	cabal clean  &&  cabal-ghc-7.8  configure  &&  cabal-ghc-7.8  test
+	cabal clean  &&  cabal test
+
+prepare:
+	cabal update  &&  cabal install leancheck
+
+prepare-legacy-test:
+	cabal-ghc-8.2  update  &&  cabal-ghc-8.2  install leancheck
+	cabal-ghc-8.0  update  &&  cabal-ghc-8.0  install leancheck
+	cabal-ghc-7.10 update  &&  cabal-ghc-7.10 install leancheck
+	cabal-ghc-7.8  update  &&  cabal-ghc-7.8  install leancheck
 
 hlint:
 	hlint \

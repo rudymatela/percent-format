@@ -4,8 +4,6 @@ TO DO list for PercentFormat
 TO DO list for PercentFormat, more or less in order:
 
 * on the `Makefile`:
-	- add `legacy-test` target;
-	- add `legacy-test-via-cabal` target;
 	- add `hugs-test` target;
 
 * when `%s` argument is char, generate `<char>` instead of `'<char>'`;
