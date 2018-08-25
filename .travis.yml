@@ -71,7 +71,8 @@ matrix:
     - cabal install Cabal==1.18.*
     - cabal install leancheck
     script:
-    - make && make test && make haddock HADDOCKFLAGS=
+    - make && make test
+    - make haddock HADDOCKFLAGS=
     - cabal test
 # Hugs is not a GHC version.  But this is how travis can handle it.
   - ghc: 'hugs'
