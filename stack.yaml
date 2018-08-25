@@ -1,5 +1,5 @@
 # stack file for PercentFormat
-resolver: lts-11.11
+resolver: lts-12.7
 
 packages:
 - .
