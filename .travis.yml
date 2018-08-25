@@ -73,6 +73,7 @@ matrix:
     script:
     - make && make test
     - make haddock HADDOCKFLAGS=
+    - make test-sdist
     - cabal test
 # Hugs is not a GHC version.  But this is how travis can handle it.
   - ghc: 'hugs'
