@@ -14,6 +14,8 @@ TO DO list for PercentFormat, more or less in order:
 
 * sweep `TODO`s scattered through files;
 
+* interpret precision in `%r` as prec of showsPrec;
+
 * *maybe*: make "%l" for lists:
 
         > "%l" % [1,2,3] -- regular
