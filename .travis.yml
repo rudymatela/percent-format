@@ -34,7 +34,8 @@ before_install:
 - cabal install leancheck
 
 script:
-- make && make test && make haddock HADDOCKFLAGS=
+- make && make test
+- make haddock
 - make test-sdist
 - cabal test
 - stack --no-terminal --skip-ghc-check test
