@@ -57,6 +57,16 @@ Haddock Documentation].
 PercentFormat is a work in progress.  Any help or pull requests are welcome.
 See [PercentFormat's TO DO list] for ideas on how to contribute.
 
+
+Installing
+----------
+
+To install the latest PercentFormat version from Hackage, just run:
+
+	$ cabal update
+	$ cabal install percent-format
+
+
 [build-status]: https://travis-ci.org/rudymatela/percent-format.svg?branch=master
 [build-log]:    https://travis-ci.org/rudymatela/percent-format
 [hackage-version]: https://img.shields.io/hackage/v/percent-format.svg
