@@ -3,6 +3,8 @@ PercentFormat -- C-like printf-style string formatting for Haskell
 
 [![PercentFormat's Build Status][build-status]][build-log]
 [![PercentFormat on Hackage][hackage-version]][percent-format-on-hackage]
+[![PercentFormat on Stackage LTS][stackage-lts-badge]][percentformat-on-stackage-lts]
+[![PercentFormat on Stackage Nightly][stackage-nightly-badge]][percentformat-on-stackage-nightly]
 
 The `Text.PercentFormat` library provides printf-style string formatting.  It
 provides a [`%`] operator (as in Ruby or Python) and uses the old C-printf-style
@@ -76,3 +78,8 @@ To install the latest PercentFormat version from Hackage, just run:
 [`-%`]: https://hackage.haskell.org/package/percent-format-0.0.1/docs/Text-PercentFormat.html#v:-45--37-
 [`-%%%`]: https://hackage.haskell.org/package/percent-format-0.0.1/docs/Text-PercentFormat.html#v:-45--37--37--37-
 [PercentFormat's TO DO list]: TODO.md
+[stackage-lts-badge]:                 http://stackage.org/package/percent-format/badge/lts
+[stackage-nightly-badge]:             http://stackage.org/package/percent-format/badge/nightly
+[percent-format-on-stackage]:         http://stackage.org/package/percent-format
+[percent-format-on-stackage-lts]:     http://stackage.org/lts/package/percent-format
+[percent-format-on-stackage-nightly]: http://stackage.org/nightly/package/percent-format
