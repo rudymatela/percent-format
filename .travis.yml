@@ -1,6 +1,6 @@
 # .travis.yml file for percent-format
 #
-# Copyright:   (c) 2018 Rudy Matela
+# Copyright:   (c) 2018-2020 Rudy Matela
 # License:     3-Clause BSD  (see the file LICENSE)
 # Maintainer:  Rudy Matela <rudy@matela.com.br>
 
@@ -22,6 +22,7 @@ before_install:
 - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$PATH
 - ghc --version
 - cabal --version
+- haddock --version
 - rm -f ~/.cabal/config && cabal update
 # Download and unpack the stack executable
 # "Once Travis whitelists the stack.dev files," simply include stack in the
@@ -31,7 +32,7 @@ before_install:
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 - stack config set system-ghc --global true
 - stack --version
-- cabal install leancheck
+- cabal install leancheck || cabal install leancheck --lib
 
 script:
 - make && make test
@@ -47,12 +48,15 @@ matrix:
   - ghc: 'head'
     env:                   GHCVER=head         CABALVER=head
     addons: {apt: {packages: [ghc-head,   cabal-install-head], sources: hvr-ghc}}
+  - ghc: '8.8'
+    env:                   GHCVER=8.8.3        CABALVER=3.0
+    addons: {apt: {packages: [ghc-8.8.3,  cabal-install-3.0],  sources: hvr-ghc}}
   - ghc: '8.6'
-    env:                   GHCVER=8.6.1        CABALVER=2.4
-    addons: {apt: {packages: [ghc-8.6.1,  cabal-install-2.4],  sources: hvr-ghc}}
+    env:                   GHCVER=8.6.5        CABALVER=2.4
+    addons: {apt: {packages: [ghc-8.6.5,  cabal-install-2.4],  sources: hvr-ghc}}
   - ghc: '8.4'
-    env:                   GHCVER=8.4.2        CABALVER=2.2
-    addons: {apt: {packages: [ghc-8.4.2,  cabal-install-2.2],  sources: hvr-ghc}}
+    env:                   GHCVER=8.4.4        CABALVER=2.2
+    addons: {apt: {packages: [ghc-8.4.4,  cabal-install-2.2],  sources: hvr-ghc}}
   - ghc: '8.2'
     env:                   GHCVER=8.2.2        CABALVER=2.0
     addons: {apt: {packages: [ghc-8.2.2,  cabal-install-2.0],  sources: hvr-ghc}}
@@ -70,6 +74,7 @@ matrix:
     - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$PATH
     - ghc --version
     - cabal --version
+    - haddock --version
     - rm -f ~/.cabal/config && cabal update
     - cabal install Cabal==1.18.*
     - cabal install leancheck
