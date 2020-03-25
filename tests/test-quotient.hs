@@ -26,15 +26,15 @@ tests :: Int -> [Bool]
 tests n =
   [ True
 
-  , holds n $ commutative ((+) -:> quotient)
-  , holds n $ associative ((+) -:> quotient)
-  , holds n $ commutative ((*) -:> quotient)
-  , holds n $ associative ((*) -:> quotient)
-  , holds n $ distributive (*) ((+) -:> quotient)
-  , holds n $ idempotent (+0) -:> quotient
-  , holds n $ idempotent (*1) -:> quotient
-  , holds n $ idempotent abs -:> quotient
-  , holds n $ idempotent signum -:> quotient
+  , holds n $ isCommutative ((+) -:> quotient)
+  , holds n $ isAssociative ((+) -:> quotient)
+  , holds n $ isCommutative ((*) -:> quotient)
+  , holds n $ isAssociative ((*) -:> quotient)
+  , holds n $ (*) `isDistributiveOver` ((+) -:> quotient)
+  , holds n $ isIdempotent (+0) -:> quotient
+  , holds n $ isIdempotent (*1) -:> quotient
+  , holds n $ isIdempotent abs -:> quotient
+  , holds n $ isIdempotent signum -:> quotient
   , holds n $ \x -> negate (negate x) == (x -: quotient)
   , holds n $ \x -> abs x * signum x == (x -: quotient)
 
