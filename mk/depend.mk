@@ -42,66 +42,66 @@ src/Text/PercentFormat/Spec.o: \
   src/Text/PercentFormat/Spec.hs
 src/Text/PercentFormat/Utils.o: \
   src/Text/PercentFormat/Utils.hs
-tests/test-number.o: \
-  tests/Test.hs \
-  tests/test-number.hs \
+test/number.o: \
+  test/Test.hs \
+  test/number.hs \
   src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Spec.hs \
   src/Text/PercentFormat/Quotient.hs \
   src/Text/PercentFormat.hs
-tests/test-number: \
-  tests/Test.hs \
-  tests/test-number.hs \
+test/number: \
+  test/Test.hs \
+  test/number.hs \
   mk/toplibs
-tests/Test.o: \
-  tests/Test.hs
-tests/test-prop.o: \
-  tests/test-prop.hs \
-  tests/Test.hs \
+test/prop.o: \
+  test/Test.hs \
+  test/prop.hs \
   src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Spec.hs \
   src/Text/PercentFormat/Quotient.hs \
   src/Text/PercentFormat.hs
-tests/test-prop: \
-  tests/test-prop.hs \
-  tests/Test.hs \
+test/prop: \
+  test/Test.hs \
+  test/prop.hs \
   mk/toplibs
-tests/test-quotient.o: \
-  tests/test-quotient.hs \
-  tests/Test.hs \
+test/quotient.o: \
+  test/Test.hs \
+  test/quotient.hs \
   src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Quotient.hs
-tests/test-quotient: \
-  tests/test-quotient.hs \
-  tests/Test.hs \
+test/quotient: \
+  test/Test.hs \
+  test/quotient.hs \
   mk/toplibs
-tests/test-scientific.o: \
-  tests/test-scientific.hs \
-  tests/Test.hs \
+test/scientific.o: \
+  test/Test.hs \
+  test/scientific.hs \
   src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Spec.hs \
   src/Text/PercentFormat/Quotient.hs \
   src/Text/PercentFormat.hs
-tests/test-scientific: \
-  tests/test-scientific.hs \
-  tests/Test.hs \
+test/scientific: \
+  test/Test.hs \
+  test/scientific.hs \
   mk/toplibs
-tests/test-spec.o: \
-  tests/test-spec.hs \
-  tests/Test.hs \
+test/spec.o: \
+  test/Test.hs \
+  test/spec.hs \
   src/Text/PercentFormat/Spec.hs
-tests/test-spec: \
-  tests/test-spec.hs \
-  tests/Test.hs \
+test/spec: \
+  test/Test.hs \
+  test/spec.hs \
   mk/toplibs
-tests/test-unit.o: \
-  tests/test-unit.hs \
-  tests/Test.hs \
+test/Test.o: \
+  test/Test.hs
+test/unit.o: \
+  test/unit.hs \
+  test/Test.hs \
   src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Spec.hs \
   src/Text/PercentFormat/Quotient.hs \
   src/Text/PercentFormat.hs
-tests/test-unit: \
-  tests/test-unit.hs \
-  tests/Test.hs \
+test/unit: \
+  test/unit.hs \
+  test/Test.hs \
   mk/toplibs

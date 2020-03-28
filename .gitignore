@@ -30,10 +30,10 @@ doc
 mk/toplibs
 bench/examples
 bench/speculate
-tests/test-main
-tests/test-number
-tests/test-prop
-tests/test-quotient
-tests/test-spec
-tests/test-unit
-tests/test-scientific
+test/main
+test/number
+test/prop
+test/quotient
+test/spec
+test/unit
+test/scientific
