@@ -36,6 +36,7 @@ src/Text/PercentFormat.o: \
   src/Text/PercentFormat/Quotient.hs \
   src/Text/PercentFormat.hs
 src/Text/PercentFormat/Quotient.o: \
+  src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Quotient.hs
 src/Text/PercentFormat/Spec.o: \
   src/Text/PercentFormat/Spec.hs
@@ -53,11 +54,7 @@ tests/test-number: \
   tests/test-number.hs \
   mk/toplibs
 tests/Test.o: \
-  tests/Test.hs \
-  src/Text/PercentFormat/Utils.hs \
-  src/Text/PercentFormat/Spec.hs \
-  src/Text/PercentFormat/Quotient.hs \
-  src/Text/PercentFormat.hs
+  tests/Test.hs
 tests/test-prop.o: \
   tests/test-prop.hs \
   tests/Test.hs \
@@ -73,20 +70,26 @@ tests/test-quotient.o: \
   tests/test-quotient.hs \
   tests/Test.hs \
   src/Text/PercentFormat/Utils.hs \
-  src/Text/PercentFormat/Spec.hs \
-  src/Text/PercentFormat/Quotient.hs \
-  src/Text/PercentFormat.hs
+  src/Text/PercentFormat/Quotient.hs
 tests/test-quotient: \
   tests/test-quotient.hs \
   tests/Test.hs \
   mk/toplibs
-tests/test-spec.o: \
-  tests/test-spec.hs \
+tests/test-scientific.o: \
+  tests/test-scientific.hs \
   tests/Test.hs \
   src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Spec.hs \
   src/Text/PercentFormat/Quotient.hs \
   src/Text/PercentFormat.hs
+tests/test-scientific: \
+  tests/test-scientific.hs \
+  tests/Test.hs \
+  mk/toplibs
+tests/test-spec.o: \
+  tests/test-spec.hs \
+  tests/Test.hs \
+  src/Text/PercentFormat/Spec.hs
 tests/test-spec: \
   tests/test-spec.hs \
   tests/Test.hs \
