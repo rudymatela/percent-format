@@ -14,7 +14,6 @@ EGS =
 BENCHS = bench/speculate
 GHCIMPORTDIRS = src:test
 GHCFLAGS = -O2 $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
-HADDOCKFLAGS = --no-print-missing-docs
 HUGSIMPORTDIRS = .:./src:./test:/usr/lib/hugs/packages/*
 INSTALL_DEPS = leancheck
 
