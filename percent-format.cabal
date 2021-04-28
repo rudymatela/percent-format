@@ -31,6 +31,7 @@ extra-source-files: .gitignore
                   , stack.yaml
                   , test/sdist
                   , .travis.yml
+                  , .github/workflows/build.yml
                   , bench/examples.hs
                   , bench/speculate.hs
                   , test/diff/*.out

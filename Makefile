@@ -16,16 +16,19 @@ GHCIMPORTDIRS = src:test
 GHCFLAGS = -O2 $(shell grep -q "Arch Linux" /etc/lsb-release && echo -dynamic)
 HADDOCKFLAGS = --no-print-missing-docs
 HUGSIMPORTDIRS = .:./src:./test:/usr/lib/hugs/packages/*
+INSTALL_DEPS = leancheck
 
 all: mk/toplibs $(TESTS)
 
 test: $(patsubst %,%.test,$(TESTS)) diff-test
 
 test-via-cabal:
-	cabal clean  &&  cabal configure --enable-tests  && cabal test
+	cabal configure --enable-tests --enable-benchmarks --ghc-options="$(GHCFLAGS) -O0"
+	cabal build
+	cabal test unit
 
 test-via-stack:
-	stack test
+	stack test percent-format:test:unit --ghc-options="$(GHCFLAGS) -O0" --system-ghc --no-install-ghc --no-terminal
 
 test-sdist:
 	./test/sdist
