@@ -30,7 +30,6 @@ extra-source-files: .gitignore
                   , mk/install-on
                   , stack.yaml
                   , test/sdist
-                  , .travis.yml
                   , .github/workflows/build.yml
                   , bench/examples.hs
                   , bench/speculate.hs

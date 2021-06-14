@@ -69,8 +69,8 @@ To install the latest PercentFormat version from Hackage, just run:
 	$ cabal install percent-format
 
 
-[build-status]: https://travis-ci.org/rudymatela/percent-format.svg?branch=master
-[build-log]:    https://travis-ci.org/rudymatela/percent-format
+[build-log]:    https://github.com/rudymatela/percent-format/actions/workflows/build.yml
+[build-status]: https://github.com/rudymatela/percent-format/actions/workflows/build.yml/badge.svg
 [hackage-version]: https://img.shields.io/hackage/v/percent-format.svg
 [percent-format-on-hackage]: https://hackage.haskell.org/package/percent-format
 [PercentFormat's Haddock Documentation]: https://hackage.haskell.org/package/percent-format/docs/Text-PercentFormat.html
