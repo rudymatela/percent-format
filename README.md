@@ -78,8 +78,8 @@ To install the latest PercentFormat version from Hackage, just run:
 [`-%`]: https://hackage.haskell.org/package/percent-format-0.0.1/docs/Text-PercentFormat.html#v:-45--37-
 [`-%%%`]: https://hackage.haskell.org/package/percent-format-0.0.1/docs/Text-PercentFormat.html#v:-45--37--37--37-
 [PercentFormat's TO DO list]: TODO.md
-[stackage-lts-badge]:                 http://stackage.org/package/percent-format/badge/lts
-[stackage-nightly-badge]:             http://stackage.org/package/percent-format/badge/nightly
-[percent-format-on-stackage]:         http://stackage.org/package/percent-format
-[percent-format-on-stackage-lts]:     http://stackage.org/lts/package/percent-format
-[percent-format-on-stackage-nightly]: http://stackage.org/nightly/package/percent-format
+[stackage-lts-badge]:                 https://stackage.org/package/percent-format/badge/lts
+[stackage-nightly-badge]:             https://stackage.org/package/percent-format/badge/nightly
+[percent-format-on-stackage]:         https://stackage.org/package/percent-format
+[percent-format-on-stackage-lts]:     https://stackage.org/lts/package/percent-format
+[percent-format-on-stackage-nightly]: https://stackage.org/nightly/package/percent-format
