@@ -23,6 +23,7 @@ mk/All.o: \
   src/Text/PercentFormat.hs \
   mk/All.hs
 mk/Toplibs.o: \
+  test/Test.hs \
   src/Text/PercentFormat/Utils.hs \
   src/Text/PercentFormat/Spec.hs \
   src/Text/PercentFormat/Quotient.hs \

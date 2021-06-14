@@ -3,3 +3,4 @@ module Toplibs () where
 
 import Text.PercentFormat ()
 import Text.PercentFormat.Spec ()
+import Test ()
