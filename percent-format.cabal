@@ -34,7 +34,16 @@ extra-source-files: .gitignore
                   , bench/examples.hs
                   , bench/speculate.hs
                   , test/diff/*.out
-tested-with: GHC==8.4, GHC==8.2, GHC==8.0, GHC==7.10, GHC==7.8
+tested-with: GHC==9.0
+           , GHC==8.10
+           , GHC==8.8
+           , GHC==8.6
+           , GHC==8.4
+           , GHC==8.2
+           , GHC==8.0
+           , GHC==7.10
+           , GHC==7.8
+           , Hugs==2006.9
 
 
 source-repository head
