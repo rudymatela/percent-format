@@ -348,7 +348,8 @@ showDigits spec x =
           $ q
   where
   capitalize = applyWhen (capitalizeDigits spec) (map toUpper)
-  signal q | q >= 0 = positivePrefix spec
+  signal q | q /= q = positivePrefix spec -- NaN
+           | q >= 0 = positivePrefix spec
            | q <  0 = "-"
   align' :: Quotient -> String -> String
   align' q = if padWith spec == ' '
