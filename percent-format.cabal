@@ -1,7 +1,7 @@
 -- Cabal file for PercentFormat
 
 name:                percent-format
-version:             0.0.3
+version:             0.0.4
 synopsis:            simple printf-style string formatting
 description:
   The @Text.PercentFormat@ library provides printf-style string formatting.  It
@@ -51,7 +51,7 @@ source-repository head
 source-repository this
   type:            git
   location:        https://github.com/rudymatela/percent-format
-  tag:             v0.0.3
+  tag:             v0.0.4
 
 library
   exposed-modules: Text.PercentFormat
