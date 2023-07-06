@@ -16,7 +16,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cabal/packages
-          key:          v1-${{ runner.os }}-cabal-packages-${{ hashFiles('hello.cabal') }}
+          key:          v1-${{ runner.os }}-cabal-packages-${{ hashFiles('*.cabal') }}
           restore-keys: v1-${{ runner.os }}-cabal-packages-
 
       - name: Cache ~/.cabal and ~/.ghc
@@ -26,7 +26,7 @@ jobs:
             ~/.cabal
             !~/.cabal/packages
             ~/.ghc
-          key:          v1-${{ runner.os }}-cabal-ghc-latest-${{ hashFiles('hello.cabal') }}
+          key:          v1-${{ runner.os }}-cabal-ghc-latest-${{ hashFiles('*.cabal') }}
           restore-keys: v1-${{ runner.os }}-cabal-ghc-latest-
 
       - run: du -hd3 ~/.cabal ~/.ghc || true
@@ -46,11 +46,17 @@ jobs:
 
       - run: make install-dependencies
 
-      - run: make
-      - run: make test
-      - run: make haddock
+      # 2023-07: some projects were failing with missing base for GHC 9.6.
+      #          Here we compile through cabal only provisionally.
+      # - run: make
+      # - run: make test
+      # - run: make haddock
       - run: make test-sdist
-      - run: make test-via-cabal
+      #- run: make test-via-cabal
+      - run: cabal configure --enable-tests --enable-benchmarks --ghc-options="-O0"
+      - run: cabal build
+      - run: cabal test
+      - run: cabal haddock
 
 
   test-with-ghc:
@@ -72,7 +78,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cabal/packages
-          key:          v1-${{ runner.os }}-cabal-packages-${{ hashFiles('hello.cabal') }}
+          key:          v1-${{ runner.os }}-cabal-packages-${{ hashFiles('*.cabal') }}
           restore-keys: v1-${{ runner.os }}-cabal-packages-
 
       - name: Cache ~/.cabal and ~/.ghc
@@ -82,7 +88,7 @@ jobs:
             ~/.cabal
             !~/.cabal/packages
             ~/.ghc
-          key:          v1-${{ runner.os }}-cabal-ghc-${{ matrix.ghc }}-${{ hashFiles('hello.cabal') }}
+          key:          v1-${{ runner.os }}-cabal-ghc-${{ matrix.ghc }}-${{ hashFiles('*.cabal') }}
           restore-keys: v1-${{ runner.os }}-cabal-ghc-${{ matrix.ghc }}-
 
       - run: du -hd3 ~/.cabal ~/.ghc || true
