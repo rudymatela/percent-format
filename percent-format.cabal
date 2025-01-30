@@ -34,12 +34,13 @@ extra-source-files: .gitignore
                   , bench/examples.hs
                   , bench/speculate.hs
                   , test/diff/*.out
-tested-with: GHC==9.8
+tested-with: GHC==9.10
+           , GHC==9.8
            , GHC==9.6
            , GHC==9.4
            , GHC==9.2
            , GHC==9.0
-           , GHC==8.10
+           , GHC==8.8
            , GHC==8.6
            , GHC==8.2
            , GHC==7.10
